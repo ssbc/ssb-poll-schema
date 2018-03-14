@@ -1,8 +1,12 @@
 # scuttle-poll-schema
 
-Hahahahh weee wtf? Dunno if this is gonna work
+## Motivation
+
+As well as this being a useful module for scuttle polls, it's a spec for _how to publish and version schema on ssb_.
 
 ## Adding your schema 
+
+### Make your schema official
 
 To contribute your schema:
 
@@ -18,21 +22,22 @@ var sockets = combine([v1, v2, <your module>])
 
 ```
 
+### Combine these schema with some of your own in another module
+
+This module exports it's depject combinable schema as `schema` so you could do something like this in your own module:
+
+```
+var pollSchema = require('ssb-poll-schema')
+var combine = require('depject')
+
+var yourSchema = require('./your-schema')
+
+var sockets = combine(pollSchema.concat(yourSchema)) 
+
+// do something with your combined depject sockets
+
+```
+
 ## Updating your schema:
 
 Don't patch schema. Don't use semver. Each time you want to change a schema make a whole new version with a new version number.
-
-
-RDD:
-
-```js
-  module.exports = {
-    parsePoll, // tries to parse an object into a poll from any known schema version
-    isPoll, // returns true if object is a valid poll of any know schema version
-
-    parsePosition,
-    isPosition,
-
-    sockets
-  }
-```
