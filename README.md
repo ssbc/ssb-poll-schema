@@ -16,9 +16,9 @@ To contribute your schema:
 - Modify index.js so that your module is passed to combine:
 ```js
 var v2 = require('./v2/')
-var <your module> = require('<your module>')
+var <your-module> = require('<your-module>')
 
-var sockets = combine([v1, v2, <your module>])
+var sockets = combine([v1, v2, <your-module>])
 
 ```
 
