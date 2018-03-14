@@ -10,7 +10,7 @@ const schema = {
   properties: {
     version: {
       type: 'string',
-      pattern: '^0.*'
+      pattern: 'v1'
     },
     type: {
       type: 'string',

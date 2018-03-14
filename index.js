@@ -12,7 +12,6 @@ var parsePosition = first(sockets.position.parse, 'position.parse')
 
 module.exports = {
   parsePoll,
-  isPoll,
   parsePosition,
   sockets
 }
