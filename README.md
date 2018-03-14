@@ -4,6 +4,12 @@
 
 As well as this being a useful module for scuttle polls, it's a spec for _how to publish and version schema on ssb_.
 
+## API
+
+```js
+
+```
+
 ## Adding your schema 
 
 ### Make your schema official
