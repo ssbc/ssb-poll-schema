@@ -1,4 +1,4 @@
-# scuttle-poll-schema
+# ssb-poll-schema
 
 ## Motivation
 
@@ -18,7 +18,7 @@ To contribute your schema:
 var v2 = require('./v2/')
 var <your-module> = require('<your-module>')
 
-var sockets = combine([v1, v2, <your-module>])
+var sockets = combine([v1, v2, <your module>])
 
 ```
 
