@@ -26,7 +26,7 @@ var sockets = combine([v1, v2, <your module>])
 
 This module exports it's depject combinable schema as `schema` so you could do something like this in your own module:
 
-```
+```js
 var pollSchema = require('ssb-poll-schema')
 var combine = require('depject')
 
