@@ -1,5 +1,5 @@
-const Validate = require('is-my-json-valid')
 const chooseOneDetails = require('./details/chooseOne')
+const {SCHEMA_VERSION} = require('../../types')
 
 const ssbSchemaDefintions = require('../../lib/ssbSchemaDefintions')
 
@@ -10,7 +10,7 @@ const schema = {
   properties: {
     version: {
       type: 'string',
-      pattern: 'v1'
+      pattern: `^${SCHEMA_VERSION}$`
     },
     type: {
       type: 'string',

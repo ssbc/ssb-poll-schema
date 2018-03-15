@@ -5,7 +5,7 @@ var {isPoll} = require('../')
 test('can parse v1 poll', function (t) {
   var fullyFeatured = {
     type: 'poll',
-    version: '0.1.0',
+    version: 'v1',
     details: {
       type: 'chooseOne',
       title: 'how many dogs?',

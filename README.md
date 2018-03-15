@@ -13,7 +13,7 @@ As well as this being a useful module for scuttle polls, it's a spec for _how to
 ```js
 var validPoll = {
   type: 'poll',
-  version: '0.1.0',
+  version: 'v1',
   details: {
     type: 'chooseOne',
     title: 'how many dogs?',

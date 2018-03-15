@@ -3,6 +3,8 @@ const proposalDetails = require('./details/proposal.js')
 const scoreDetails = require('./details/score.js')
 const chooseOneDetails = require('./details/chooseOne.js')
 
+const {SCHEMA_VERSION} = require('../../types')
+
 const ssbSchemaDefintions = require('../../lib/ssbSchemaDefintions')
 
 const schema = {
@@ -12,7 +14,7 @@ const schema = {
   properties: {
     version: {
       type: 'string',
-      pattern: '^0.*'
+      pattern: `^${SCHEMA_VERSION}$`
     },
     type: {
       type: 'string',
