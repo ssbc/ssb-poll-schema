@@ -1,10 +1,12 @@
+[![Build Status](https://travis-ci.org/ssbc/ssb-poll-schema.svg?branch=master)](https://travis-ci.org/ssbc/ssb-poll-schema)
+
 # ssb-poll-schema
 
 ## Motivation
 
 As well as this being a useful module for scuttle polls, it's a spec for _how to publish and version schema on ssb_.
 
-## API
+## Exports
 
 ```js
 
