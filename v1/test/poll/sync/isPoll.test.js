@@ -39,7 +39,6 @@ test('Poll - common requirements', function (t) {
     version: SCHEMA_VERSION,
     details: {
       type: CHOOSE_ONE,
-      title: 'how many dogs?',
       choices: [1, 2, 3]
     },
     title: 'how many food',
