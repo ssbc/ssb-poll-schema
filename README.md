@@ -14,23 +14,13 @@ As well as this being a useful module for scuttle polls, it's a spec for _how to
 var validPoll = {
   type: 'poll',
   version: 'v1',
+  title: 'what is for dinner',
+  body: 'this is really important, please let me know',
+  closesAt: '2018-03-15T03:40:06.222Z',
   details: {
     type: 'chooseOne',
-    title: 'how many dogs?',
-    choices: [1, 2, 3]
-  },
-  title: 'how many food',
-  body: 'this is really important, please let me know',
-  mentions: [
-    {name: 'mix', link: '@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519'},
-    {name: 'sweet drawing', link: '&mwILr7kd1Tug/4vX5nW6YORhyununwkO4cF6jbiSyoA=.sha256'},
-    {link: '%s8uVi560mwpE8ncjT+eMz5XBQBREdk4exvM3D6dIg9g=.sha256'}
-  ],
-  recps: [
-    '@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519',
-    {name: 'mix', link: '@ye+QM09iPcDJD6YvQYjoQc7sLF/IFhmNbEqgdzQo3lQ=.ed25519'}
-  ],
-  closesAt: new Date().toISOString()
+    choices: ['lasagne', 'avos', 'tacos']
+  }
 }
 
 console.log(isPoll(validPoll)) // => true
