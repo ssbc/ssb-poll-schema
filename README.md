@@ -2,15 +2,26 @@
 
 # ssb-poll-schema
 
+> Gives parsers and validators for all known schema versions of ssb-poll messages
+
 ## Motivation
 
 As well as this being a useful module for scuttle polls, it's a spec for _how to publish and version schema on ssb_.
 
-## Exports
+## API
 
-```js
+### Validators
 
-```
+- `isPoll`,
+- `isChooseOnePoll`,
+
+- `isPosition`,
+- `isChooseOnePosition`,
+
+### Parsers
+
+- `parsePoll`,
+- `parsePosition`,
 
 ## Adding your schema 
 
@@ -22,12 +33,12 @@ To contribute your schema:
   - It must be a depject module that exports ...
 - Add your module as a dependency in this module. 
 - Modify index.js so that your module is passed to combine:
+
 ```js
 var v2 = require('./v2/')
 var <your-module> = require('<your-module>')
 
 var sockets = combine([v1, v2, <your module>])
-
 ```
 
 ### Combine these schema with some of your own in another module
