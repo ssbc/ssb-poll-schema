@@ -1,6 +1,6 @@
 const test = require('tape')
 const ChooseOne = require('../../../poll/sync/chooseOne')
-const isPoll = require('../../../isPoll')
+const isPoll = require('../../../poll/sync/isPoll')
 
 test('Position - ChooseOne', function (t) {
   var invalidPoll = ChooseOne({

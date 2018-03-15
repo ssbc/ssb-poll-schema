@@ -1,6 +1,6 @@
 const test = require('tape')
 const ChooseOne = require('../../../poll/sync/chooseOne')
-const isPoll = require('../../../isPoll')
+const isPoll = require('../../../poll/sync/isPoll')
 const { CHOOSE_ONE, SCHEMA_VERSION } = require('../../../types')
 
 // this is for testing the attributes that are required for all polls
