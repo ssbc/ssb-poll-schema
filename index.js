@@ -1,9 +1,9 @@
 var combine = require('depject')
 var {first} = require('depject/apply')
 
-var v1 = require('./v1/')
-
-var sockets = combine([v1])
+var sockets = combine([
+  require('./v1/')
+])
 
 var parsePoll = first(sockets.poll.parse, 'poll.parse')
 var isChooseOnePoll = first(sockets.poll.isChooseOne, 'poll.isChooseOne')
