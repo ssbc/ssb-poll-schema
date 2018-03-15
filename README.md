@@ -71,8 +71,8 @@ To contribute your schema:
 
 ```js
 var sockets = combine([
-  require('./v1/') 
-  require('./v2/') 
+  require('./v1/'),
+  require('./v2/'),
   require('<your-module>') 
 ])
 ```
