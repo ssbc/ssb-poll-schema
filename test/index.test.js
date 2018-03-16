@@ -1,8 +1,13 @@
 var test = require('tape')
 
-var {isPoll} = require('../')
+var {isPoll, versionStrings} = require('../')
 
-test('can parse v1 poll', function (t) {
+test('version gets an object with version strings', function (t) {
+  t.ok(versionStrings.V1_SCHEMA_VERSION_STRING)
+  t.end()
+})
+
+test('can validate a v1 poll', function (t) {
   var fullyFeatured = {
     type: 'poll',
     version: 'v1',

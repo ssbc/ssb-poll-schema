@@ -1,5 +1,5 @@
 var combine = require('depject')
-var {first} = require('depject/apply')
+var {first, reduce} = require('depject/apply')
 
 var v1 = require('./v1/')
 
@@ -13,6 +13,7 @@ var isPoll = first(sockets.poll.isPoll, 'poll.isPoll')
 var parsePosition = first(sockets.position.parse, 'position.parse')
 var isChooseOnePosition = first(sockets.position.isChooseOne, 'position.isChooseOne')
 var isPosition = first(sockets.position.isPosition, 'position.isPosition')
+var versionStrings = reduce(sockets.version.string, 'version.string')({})
 
 module.exports = {
   parsePoll,
@@ -22,6 +23,8 @@ module.exports = {
   parsePosition,
   isChooseOnePosition,
   isPosition,
+
+  versionStrings,
 
   sockets,
   schema: [

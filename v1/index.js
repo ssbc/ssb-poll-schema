@@ -1,5 +1,6 @@
 var nest = require('depnest')
 
+var {SCHEMA_VERSION} = require('./types')
 var Poll = require('./poll/sync/poll')
 var isV1ChooseOnePoll = require('./poll/sync/isChooseOnePoll')
 var isV1Poll = require('./poll/sync/isPoll')
@@ -19,6 +20,9 @@ module.exports = {
       'parse',
       'isChooseOne',
       'isPosition'
+    ],
+    'version': [
+      'string'
     ]
   }),
   create: function (api) {
@@ -32,8 +36,16 @@ module.exports = {
         parse: parsePosition,
         isChooseOne: isChooseOnePosition,
         isPosition
+      },
+      version: {
+        string: versionString
       }
     })
+
+    function versionString (versions) {
+      versions.V1_SCHEMA_VERSION_STRING = SCHEMA_VERSION
+      return versions
+    }
 
     function isPoll (poll) {
       return isV1Poll(poll) ? true : undefined
