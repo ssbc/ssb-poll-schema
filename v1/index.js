@@ -58,7 +58,7 @@ module.exports = {
     function parsePoll (poll) {
       if (!isV1Poll(poll)) { return }
 
-      return Poll({poll})
+      return Poll(poll)
     }
 
     function isPosition (position) {
@@ -72,7 +72,7 @@ module.exports = {
     function parsePosition (position) {
       if (!isV1Position(position)) { return }
 
-      return Position({position})
+      return Position(position)
     }
   }
 }

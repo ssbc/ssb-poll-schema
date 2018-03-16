@@ -1,12 +1,12 @@
 var test = require('tape')
 var Validate = require('is-my-json-valid')
-var positionSchema = require('../schema/position')
+var pollSchema = require('../schema/poll')
 
-var isNormalisedPosition = Validate(positionSchema)
+var isNormalisedPoll = Validate(pollSchema)
 
-var {isPoll, parsePosition, versionStrings} = require('../')
+var {isPoll, parsePoll, versionStrings} = require('../')
 
-test('parsing a v1 position returns an object that is a valid position object', function (t) {
+test('parsing a v1 position returns an object that is a valid normalised position object', function (t) {
   var fullyFeatured = {
     type: 'poll',
     version: 'v1',
@@ -29,9 +29,8 @@ test('parsing a v1 position returns an object that is a valid position object', 
     closesAt: new Date().toISOString()
   }
 
-  var parsedPosition = parsePosition(fullyFeatured)
-  console.log(parsedPosition)
-  t.ok(isNormalisedPosition(parsedPosition))
+  var parsedPoll = parsePoll(fullyFeatured)
+  t.ok(isNormalisedPoll(parsedPoll))
   t.end()
 })
 
