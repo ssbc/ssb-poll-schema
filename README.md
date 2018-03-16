@@ -41,6 +41,15 @@ console.log(isPoll(validPoll)) // => true
 - `parsePoll`,
 - `parsePosition`,
 
+### Version strings
+
+Returns an object with version string constants useful for publishing messages.
+
+```js
+{
+  V1_SCHEMA_VERSION_STRING: 'v1'
+}
+```
 ## Important note for mantainers of this module or if you add your own schema:
 
 Don't modify schema!
