@@ -55,7 +55,7 @@ module.exports = {
       return isV1ChooseOnePoll(poll) ? true : undefined
     }
 
-    function parsePoll ({poll}) {
+    function parsePoll (poll) {
       if (!isV1Poll(poll)) { return }
 
       return Poll({poll})
@@ -69,7 +69,7 @@ module.exports = {
       return isV1ChooseOnePosition(position) ? true : undefined
     }
 
-    function parsePosition ({position}) {
+    function parsePosition (position) {
       if (!isV1Position(position)) { return }
 
       return Position({position})
