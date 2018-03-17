@@ -25,6 +25,7 @@ test('parsing a v1 position returns an object that is a valid normalised positio
   t.ok(isNormalisedPosition(parsedPosition))
   t.end()
 })
+
 test('parsing a v1 poll returns an object that is a valid normalised position object', function (t) {
   var fullyFeatured = {
     type: 'poll',
