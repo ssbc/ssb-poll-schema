@@ -1,11 +1,11 @@
 var nest = require('depnest')
 
 var {SCHEMA_VERSION} = require('./types')
-var Poll = require('./poll/sync/poll')
+var Poll = require('./poll/sync/parsePoll')
 var isV1ChooseOnePoll = require('./poll/sync/isChooseOnePoll')
 var isV1Poll = require('./poll/sync/isPoll')
 
-var Position = require('./position/sync/position')
+var Position = require('./position/sync/parsePosition')
 var isV1ChooseOnePosition = require('./position/sync/isChooseOnePosition')
 var isV1Position = require('./position/sync/isPosition')
 

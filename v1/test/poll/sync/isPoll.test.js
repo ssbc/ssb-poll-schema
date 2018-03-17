@@ -1,5 +1,5 @@
 const test = require('tape')
-const ChooseOne = require('../../../poll/sync/chooseOne')
+const ChooseOne = require('../../../poll/sync/parseChooseOne')
 const isPoll = require('../../../poll/sync/isPoll')
 const { CHOOSE_ONE, SCHEMA_VERSION } = require('../../../types')
 

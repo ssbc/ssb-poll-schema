@@ -1,5 +1,5 @@
 const test = require('tape')
-const ChooseOne = require('../../../poll/sync/chooseOne')
+const ChooseOne = require('../../../poll/sync/parseChooseOne')
 const isPoll = require('../../../poll/sync/isPoll')
 
 test('Position - ChooseOne', function (t) {

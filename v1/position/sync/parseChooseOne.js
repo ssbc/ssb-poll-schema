@@ -1,4 +1,4 @@
-const Position = require('./position')
+const Position = require('./parsePosition')
 const { CHOOSE_ONE } = require('../../types')
 
 module.exports = function ChooseOne ({ poll, choice, reason, channel, mentions }) {
