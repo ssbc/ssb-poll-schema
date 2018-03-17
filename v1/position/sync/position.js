@@ -1,9 +1,9 @@
 const {SCHEMA_VERSION} = require('../../types')
 
-module.exports = function Position ({ poll = {}, details, reason, channel, mentions }) {
+module.exports = function Position ({ details, root, reason, channel, mentions }) {
   const content = {
     type: 'position',
-    root: typeof poll === 'string' ? poll : poll.key,
+    root,
     version: SCHEMA_VERSION,
     details
   }

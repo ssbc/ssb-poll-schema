@@ -1,12 +1,31 @@
 var test = require('tape')
 var Validate = require('is-my-json-valid')
 var pollSchema = require('../schema/poll')
+var positionSchema = require('../schema/position')
 
 var isNormalisedPoll = Validate(pollSchema)
+var isNormalisedPosition = Validate(positionSchema)
+var { CHOOSE_ONE } = require('../v1/types')
 
-var {isPoll, parsePoll, versionStrings} = require('../')
+var {isPoll, parsePoll, parsePosition, isPosition, versionStrings} = require('../')
 
 test('parsing a v1 position returns an object that is a valid normalised position object', function (t) {
+  var validPosition = {
+    type: 'position',
+    version: 'v1',
+    root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
+    details: {
+      type: CHOOSE_ONE,
+      choice: 0
+    }
+  }
+  t.ok(isPosition(validPosition))
+
+  var parsedPosition = parsePosition(validPosition)
+  t.ok(isNormalisedPosition(parsedPosition))
+  t.end()
+})
+test('parsing a v1 poll returns an object that is a valid normalised position object', function (t) {
   var fullyFeatured = {
     type: 'poll',
     version: 'v1',
