@@ -8,8 +8,13 @@
 
 As well as this being a useful module for scuttle polls, it's a spec for _how to publish and version schema on ssb_.
 
-This module gives you parsers that will return a 'normalised' object, regardless of the shape of the shape of the object to parse.
-A change in major version of this module means that there is a breaking change to the schema in the top level `schema` folder.
+This module gives you parsers that will return a 'normalised' object, regardless of of the shape of the object to parse.
+The `position` and `poll` objects returned by the parsers are defined in `./schema`.
+
+A change in major version of this module means that there is a breaking change to the shape of the 'normalised' object.
+An example of a breaking change would be that a required property in the schema was removed. 
+
+A minor version change could be that a new property was added to a schema but that isn't a required field. 
 
 ## Example
 
