@@ -23,14 +23,15 @@ test('Position - common requirements', function (t) {
 
   var validPosition = {
     type: 'position',
-    poll: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
+    root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
+    version: 'v1',
     details: {
       type: CHOOSE_ONE,
       choice: 0
     }
   }
 
-  t.false(isPosition(validPosition), 'valid position is ok')
+  t.true(isPosition(validPosition), 'valid position is ok')
 
   t.end()
 })
