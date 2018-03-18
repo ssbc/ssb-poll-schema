@@ -10,7 +10,8 @@ var schema = {
       pattern: typeStringPattern
     },
     choices: {
-      type: 'array'
+      type: 'array',
+      minitems: 1
     }
   }
 }
