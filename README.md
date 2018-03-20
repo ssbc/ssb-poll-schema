@@ -60,8 +60,24 @@ Returns an object with version string constants useful for publishing messages.
 ```
 ## Important note for mantainers of this module or if you add your own schema:
 
-Don't modify schema!
-Don't use semver. Each time you want to change a schema make a whole new version with a new version number.
+How / when should you modify schema and version numbers:
+
+### You have an existing schema but it's missing a constraint that must be added. You want existing messages to fail validation if they fail the new constraint.
+
+- Modify the schema by adding the constraint. 
+- Don't change the schema version number. 
+- Bump the patch version of this module.
+
+### You have an existing schema but it has a constraint that must be removed. You want existing messages that would have failed validation to be passed by this new schema.
+
+- Make a whole new schema + parsers with unique version number. e.g. copy the v1 folder to a new v2 folder and wire it up
+
+### You have an existing schema and want to add a new property that is optional (not `required` in the schema).
+
+- Modify the schema by adding the property. 
+- Update the parser. 
+- Don't change the schema version number. 
+- Bump the patch version of this module.
 
 ## Want to use your schema with this project? 
 
