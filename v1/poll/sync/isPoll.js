@@ -1,7 +1,7 @@
 const Validator = require('is-my-json-valid')
 const schema = require('../schema/poll')
 const validator = Validator(schema, {verbose: true})
-const getMsgContent = require('../../lib/getMsgContent')
+const getMsgContent = require('ssb-msg-content')
 const { CHOOSE_ONE } = require('../../types')
 
 const isChooseOnePoll = require('./isChooseOnePoll')
