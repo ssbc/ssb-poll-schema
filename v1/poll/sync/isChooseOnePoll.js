@@ -1,7 +1,7 @@
 const Validator = require('is-my-json-valid')
 const schema = require('../schema/chooseOnePoll')
 const validator = Validator(schema, {verbose: true})
-const getMsgContent = require('../../lib/getMsgContent')
+const getMsgContent = require('ssb-msg-content')
 
 // server is not used here. Closure pattern is just for consistency of use with other functions.
 module.exports = function isChooseOnePoll (obj) {
