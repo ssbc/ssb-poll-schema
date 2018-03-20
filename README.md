@@ -68,9 +68,9 @@ How / when should you modify schema and version numbers:
 - Don't change the schema version number. 
 - Bump the patch version of this module.
 
-### You have an existing schema but it has a constraint that must be removed. You want existing messages that would have failed validation to be parsed by this new schema.
+### You have an existing schema but it has a constraint that must be removed. You want existing messages that would have failed validation to be passed by this new schema.
 
-- Make a whole new schema + parsers with unique version number. eg copy the v1 folder and wire it up. 
+- Make a whole new schema + parsers with unique version number. e.g. copy the v1 folder to a new v2 folder and wire it up
 
 ### You have an existing schema and want to add a new property that is optional (not `required` in the schema).
 
