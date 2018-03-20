@@ -8,11 +8,15 @@ var sockets = combine([
 ])
 
 var parsePoll = first(sockets.poll.parse, 'poll.parse')
-var isChooseOnePoll = first(sockets.poll.isChooseOne, 'poll.isChooseOne')
 var isPoll = first(sockets.poll.isPoll, 'poll.isPoll')
+var isChooseOnePoll = first(sockets.poll.isChooseOne, 'poll.isChooseOne')
+isPoll.chooseOne = isChooseOnePoll
+
 var parsePosition = first(sockets.position.parse, 'position.parse')
-var isChooseOnePosition = first(sockets.position.isChooseOne, 'position.isChooseOne')
 var isPosition = first(sockets.position.isPosition, 'position.isPosition')
+var isChooseOnePosition = first(sockets.position.isChooseOne, 'position.isChooseOne')
+isPosition.chooseOne
+
 var versionStrings = reduce(sockets.version.string, 'version.string')({})
 
 module.exports = {

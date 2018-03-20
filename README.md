@@ -19,6 +19,8 @@ A minor version change could be that a new property was added to a schema but th
 ## Example
 
 ```js
+var { isPoll } = require('ssb-poll-schema')
+
 var validPoll = {
   type: 'poll',
   version: 'v1',
@@ -38,11 +40,11 @@ console.log(isPoll(validPoll)) // => true
 
 ### Validators
 
-- `isPoll`,
-- `isChooseOnePoll`,
+- `isPoll`
+- `isChooseOnePoll` (also accessible under `isPoll.chooseOne`)
 
-- `isPosition`,
-- `isChooseOnePosition`,
+- `isPosition`
+- `isChooseOnePosition` (also accessible under `isPosition.chooseOne`)
 
 ### Parsers
 
