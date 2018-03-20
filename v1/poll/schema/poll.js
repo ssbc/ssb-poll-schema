@@ -10,7 +10,7 @@ const ssbSchemaDefintions = require('../../lib/ssbSchemaDefintions')
 const schema = {
   $schema: 'http://json-schema.org/schema#',
   type: 'object',
-  required: ['type', 'details', 'title', 'closesAt', 'version'],
+  required: ['version', 'type', 'title', 'details', 'closesAt'],
   properties: {
     version: {
       type: 'string',
@@ -20,6 +20,7 @@ const schema = {
       type: 'string',
       pattern: '^poll$'
     },
+    title: { type: 'string' },
     details: {
       oneOf: [
         // { $ref: '#/definitions/details/dot'},
@@ -30,7 +31,6 @@ const schema = {
         // { $ref: '#/definitions/details/meeting'},
       ]
     },
-    title: { type: 'string' },
     closesAt: { type: 'string', format: 'date-time' },
     body: { type: 'string' },
     mentions: { $ref: '#/definitions/mentions/any' },

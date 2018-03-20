@@ -6,7 +6,7 @@ const ssbSchemaDefintions = require('../../lib/ssbSchemaDefintions')
 const schema = {
   $schema: 'http://json-schema.org/schema#',
   type: 'object',
-  required: ['type', 'root', 'details', 'version'],
+  required: ['version', 'type', 'root', 'details'],
   properties: {
     version: {
       type: 'string',
