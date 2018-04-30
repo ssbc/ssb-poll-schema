@@ -19,6 +19,7 @@ module.exports = {
     ],
     'position': [
       'parse',
+      'parseErrors',
       'isChooseOne',
       'isPosition'
     ],
@@ -36,6 +37,7 @@ module.exports = {
       },
       position: {
         parse: parsePosition,
+        parseErrors: parsePositionErrors,
         isChooseOne: isChooseOnePosition,
         isPosition
       },
@@ -84,6 +86,15 @@ module.exports = {
       if (!isV1Position(position)) { return }
 
       return Position(position)
+    }
+
+    function parsePositionErrors (postition) {
+      if (!postition.errors) { postition.errors = {} }
+
+      isV1Position(postition)
+
+      postition.errors[SCHEMA_VERSION] = isV1Position.errors
+      return postition
     }
   }
 }

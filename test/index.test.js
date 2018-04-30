@@ -7,7 +7,17 @@ var isNormalisedPoll = Validate(pollSchema)
 var isNormalisedPosition = Validate(positionSchema)
 var { CHOOSE_ONE } = require('../v1/types')
 
-var {isPoll, parsePoll, parsePollErrors, parsePosition, isPosition, versionStrings} = require('../')
+var {
+  isPoll,
+  parsePoll,
+  parsePollErrors,
+
+  isPosition,
+  parsePosition,
+  parsePositionErrors,
+
+  versionStrings
+} = require('../')
 
 test('parsing a v1 position returns an object that is a valid normalised position object', function (t) {
   var validPosition = {
@@ -85,7 +95,7 @@ test('can validate a v1 poll', function (t) {
   t.end()
 })
 
-test('can get all the errors returned by the parsers, keyed by schema version', function (t) {
+test('can get all the errors returned by the poll parsers, keyed by schema version', function (t) {
   var invalid = {
     type: 'poll',
     version: 'v1',
@@ -94,7 +104,17 @@ test('can get all the errors returned by the parsers, keyed by schema version', 
   }
 
   var poll = parsePollErrors(invalid)
-  console.log(poll.errors.v1)
   t.ok(poll.errors.v1)
+  t.end()
+})
+
+test('can get all the errors returned by the position parsers, keyed by schema version', function (t) {
+  var invalid = {
+    type: 'position',
+    version: 'v1',
+    root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256'
+  }
+  var position = parsePositionErrors(invalid)
+  t.ok(position.errors.v1)
   t.end()
 })
