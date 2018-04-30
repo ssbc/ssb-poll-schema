@@ -7,7 +7,7 @@ var isNormalisedPoll = Validate(pollSchema)
 var isNormalisedPosition = Validate(positionSchema)
 var { CHOOSE_ONE } = require('../v1/types')
 
-var {isPoll, parsePoll, parsePosition, isPosition, versionStrings} = require('../')
+var {isPoll, parsePoll, parsePollErrors, parsePosition, isPosition, versionStrings} = require('../')
 
 test('parsing a v1 position returns an object that is a valid normalised position object', function (t) {
   var validPosition = {
@@ -82,5 +82,19 @@ test('can validate a v1 poll', function (t) {
     closesAt: new Date().toISOString()
   }
   t.ok(isPoll(fullyFeatured))
+  t.end()
+})
+
+test('can get all the errors returned by the parsers, keyed by schema version', function (t) {
+  var invalid = {
+    type: 'poll',
+    version: 'v1',
+    body: 'this is really important, please let me know',
+    closesAt: new Date().toISOString()
+  }
+
+  var poll = parsePollErrors(invalid)
+  console.log(poll.errors.v1)
+  t.ok(poll.errors.v1)
   t.end()
 })

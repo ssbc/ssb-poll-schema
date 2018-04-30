@@ -13,6 +13,7 @@ module.exports = {
   gives: nest({
     'poll': [
       'parse',
+      'parseErrors',
       'isChooseOne',
       'isPoll'
     ],
@@ -29,6 +30,7 @@ module.exports = {
     return nest({
       poll: {
         parse: parsePoll,
+        parseErrors: parsePollErrors,
         isChooseOne: isChooseOnePoll,
         isPoll
       },
@@ -59,6 +61,15 @@ module.exports = {
       if (!isV1Poll(poll)) { return }
 
       return Poll(poll)
+    }
+
+    function parsePollErrors (poll) {
+      if (!poll.errors) { poll.errors = {} }
+
+      isV1Poll(poll)
+
+      poll.errors[SCHEMA_VERSION] = isV1Poll.errors
+      return poll
     }
 
     function isPosition (position) {
