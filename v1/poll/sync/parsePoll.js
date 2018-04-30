@@ -3,7 +3,6 @@ const {SCHEMA_VERSION} = require('../../types')
 
 function Poll (msg) {
   var { details, title, closesAt, body, channel, recps, mentions } = getContent(msg)
-  closesAt = new Date(closesAt)
   var content = { type: 'poll', details, title, closesAt, version: SCHEMA_VERSION }
 
   if (body) content.body = body
