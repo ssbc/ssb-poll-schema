@@ -51,6 +51,11 @@ console.log(isPoll(validPoll)) // => true
 - `parsePoll`,
 - `parsePosition`,
 
+### Parser Errors (useful for debugging)
+
+- `parsePollErrors`,
+- `parsePositionErrors`,
+
 ### Version strings
 
 Returns an object with version string constants useful for publishing messages.
