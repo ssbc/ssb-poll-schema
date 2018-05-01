@@ -8,7 +8,10 @@ var sockets = combine([
 ])
 
 var parsePoll = first(sockets.poll.parse, 'poll.parse')
-var getPollErrors = reduce(sockets.poll.getErrors, 'poll.getErrors')
+var getPollErrors = (poll) => {
+  var result = reduce(sockets.poll.getErrors, 'poll.getErrors')(poll)
+  return result.errors
+}
 
 var isPoll = first(sockets.poll.isPoll, 'poll.isPoll')
 var isChooseOnePoll = first(sockets.poll.isChooseOne, 'poll.isChooseOne')
@@ -17,7 +20,10 @@ isPoll.chooseOne = isChooseOnePoll
 var parsePosition = first(sockets.position.parse, 'position.parse')
 var isPosition = first(sockets.position.isPosition, 'position.isPosition')
 var isChooseOnePosition = first(sockets.position.isChooseOne, 'position.isChooseOne')
-var getPositionErrors = reduce(sockets.position.getErrors, 'position.getErrors')
+var getPositionErrors = (position) => {
+  var result = reduce(sockets.position.getErrors, 'position.getErrors')(position)
+  return result.errors
+}
 
 var versionStrings = reduce(sockets.version.string, 'version.string')({})
 

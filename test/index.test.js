@@ -103,8 +103,8 @@ test('can get all the errors returned by the poll parsers, keyed by schema versi
     closesAt: new Date().toISOString()
   }
 
-  var poll = getPollErrors(invalid)
-  t.ok(poll.errors.v1)
+  var errors = getPollErrors(invalid)
+  t.ok(errors.v1)
   t.end()
 })
 
@@ -114,7 +114,7 @@ test('can get all the errors returned by the position parsers, keyed by schema v
     version: 'v1',
     root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256'
   }
-  var position = getPositionErrors(invalid)
-  t.ok(position.errors.v1)
+  var errors = getPositionErrors(invalid)
+  t.ok(errors.v1)
   t.end()
 })
