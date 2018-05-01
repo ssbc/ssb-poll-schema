@@ -10,11 +10,11 @@ var { CHOOSE_ONE } = require('../v1/types')
 var {
   isPoll,
   parsePoll,
-  parsePollErrors,
+  getPollErrors,
 
   isPosition,
   parsePosition,
-  parsePositionErrors,
+  getPositionErrors,
 
   versionStrings
 } = require('../')
@@ -103,7 +103,7 @@ test('can get all the errors returned by the poll parsers, keyed by schema versi
     closesAt: new Date().toISOString()
   }
 
-  var poll = parsePollErrors(invalid)
+  var poll = getPollErrors(invalid)
   t.ok(poll.errors.v1)
   t.end()
 })
@@ -114,7 +114,7 @@ test('can get all the errors returned by the position parsers, keyed by schema v
     version: 'v1',
     root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256'
   }
-  var position = parsePositionErrors(invalid)
+  var position = getPositionErrors(invalid)
   t.ok(position.errors.v1)
   t.end()
 })
