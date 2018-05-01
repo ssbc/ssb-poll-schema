@@ -53,8 +53,8 @@ console.log(isPoll(validPoll)) // => true
 
 ### Parser Errors (useful for debugging)
 
-- `parsePollErrors`,
-- `parsePositionErrors`,
+- `getPollErrors`,
+- `getPositionErrors`,
 
 ### Version strings
 
