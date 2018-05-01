@@ -35,3 +35,17 @@ test('Position - common requirements', function (t) {
 
   t.end()
 })
+
+test('Chooseone Position must have at least one choice', function (t) {
+  var missingChoice = {
+    type: 'position',
+    root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
+    version: 'v1',
+    details: {
+      type: CHOOSE_ONE
+    }
+  }
+  t.false(isPosition(missingChoice), 'needs poll')
+
+  t.end()
+})
