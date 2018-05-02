@@ -10,7 +10,7 @@ var sockets = combine([
 var parsePoll = first(sockets.poll.parse, 'poll.parse')
 var getPollErrors = (poll) => {
   var errors = reduce(sockets.poll.getErrors, 'poll.getErrors')(poll).errors
-  poll.errors = undefined
+  delete poll.errors
   return errors
 }
 
@@ -23,7 +23,7 @@ var isPosition = first(sockets.position.isPosition, 'position.isPosition')
 var isChooseOnePosition = first(sockets.position.isChooseOne, 'position.isChooseOne')
 var getPositionErrors = (position) => {
   var errors = reduce(sockets.position.getErrors, 'position.getErrors')(position).errors
-  position.errors = undefined
+  delete position.errors
   return errors
 }
 
