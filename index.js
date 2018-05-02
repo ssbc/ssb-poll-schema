@@ -8,6 +8,10 @@ var sockets = combine([
 ])
 
 var parsePoll = first(sockets.poll.parse, 'poll.parse')
+var getPollErrors = (poll) => {
+  return reduce(sockets.poll.getErrors, 'poll.getErrors')(poll).errors
+}
+
 var isPoll = first(sockets.poll.isPoll, 'poll.isPoll')
 var isChooseOnePoll = first(sockets.poll.isChooseOne, 'poll.isChooseOne')
 isPoll.chooseOne = isChooseOnePoll
@@ -15,16 +19,20 @@ isPoll.chooseOne = isChooseOnePoll
 var parsePosition = first(sockets.position.parse, 'position.parse')
 var isPosition = first(sockets.position.isPosition, 'position.isPosition')
 var isChooseOnePosition = first(sockets.position.isChooseOne, 'position.isChooseOne')
-isPosition.chooseOne
+var getPositionErrors = (position) => {
+  return reduce(sockets.position.getErrors, 'position.getErrors')(position).errors
+}
 
 var versionStrings = reduce(sockets.version.string, 'version.string')({})
 
 module.exports = {
   parsePoll,
+  getPollErrors,
   isChooseOnePoll,
   isPoll,
 
   parsePosition,
+  getPositionErrors,
   isChooseOnePosition,
   isPosition,
 

@@ -51,6 +51,30 @@ console.log(isPoll(validPoll)) // => true
 - `parsePoll`,
 - `parsePosition`,
 
+### Parser Errors (useful for debugging)
+
+- `getPollErrors`,
+- `getPositionErrors`,
+
+Returns something shaped like:
+```js
+
+{ v1:
+   [ { field: 'data.title',
+       message: 'is required',
+       value: [Object],
+       type: 'object',
+       schemaPath: [] },
+     { field: 'data.details',
+       message: 'is required',
+       value: [Object],
+       type: 'object',
+       schemaPath: [] 
+     } 
+   ] 
+}
+```
+
 ### Version strings
 
 Returns an object with version string constants useful for publishing messages.
