@@ -1,7 +1,7 @@
 var test = require('tape')
 var Validate = require('is-my-json-valid')
-var pollSchema = require('../schema/poll')
-var positionSchema = require('../schema/position')
+var pollSchema = require('../normalised-schema/poll')
+var positionSchema = require('../normalised-schema/position')
 
 var isNormalisedPoll = Validate(pollSchema)
 var isNormalisedPosition = Validate(positionSchema)
@@ -9,11 +9,11 @@ var { CHOOSE_ONE } = require('../v1/types')
 
 var {
   isPoll,
-  parsePoll,
+  parseChooseOnePoll,
   getPollErrors,
 
   isPosition,
-  parsePosition,
+  parseChooseOnePosition,
   getPositionErrors,
 
   versionStrings
@@ -21,6 +21,7 @@ var {
 
 test('parsing a v1 position returns an object that is a valid normalised position object', function (t) {
   var validPosition = {
+    key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     type: 'position',
     version: 'v1',
     root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
@@ -31,13 +32,14 @@ test('parsing a v1 position returns an object that is a valid normalised positio
   }
   t.ok(isPosition(validPosition))
 
-  var parsedPosition = parsePosition(validPosition)
+  var parsedPosition = parseChooseOnePosition(validPosition)
   t.ok(isNormalisedPosition(parsedPosition))
   t.end()
 })
 
 test('parsing a v1 poll returns an object that is a valid normalised position object', function (t) {
   var fullyFeatured = {
+    key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     type: 'poll',
     version: 'v1',
     details: {
@@ -59,7 +61,7 @@ test('parsing a v1 poll returns an object that is a valid normalised position ob
     closesAt: new Date().toISOString()
   }
 
-  var parsedPoll = parsePoll(fullyFeatured)
+  var parsedPoll = parseChooseOnePoll(fullyFeatured)
   t.ok(isNormalisedPoll(parsedPoll))
   t.end()
 })
@@ -71,6 +73,7 @@ test('version gets an object with version strings', function (t) {
 
 test('can validate a v1 poll', function (t) {
   var fullyFeatured = {
+    key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     type: 'poll',
     version: 'v1',
     details: {
@@ -97,6 +100,7 @@ test('can validate a v1 poll', function (t) {
 
 test('can get all the errors returned by the poll parsers, keyed by schema version', function (t) {
   var invalid = {
+    key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     type: 'poll',
     version: 'v1',
     body: 'this is really important, please let me know',

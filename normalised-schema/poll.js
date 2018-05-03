@@ -1,10 +1,12 @@
+// TODO: this shouldn't use v1, should be general.
 const ssbSchemaDefintions = require('../v1/lib/ssbSchemaDefintions')
 
 const schema = {
   $schema: 'http://json-schema.org/schema#',
   type: 'object',
-  required: ['version', 'type', 'title', 'details', 'closesAt'],
+  required: ['key', 'type', 'title', 'details', 'closesAt'],
   properties: {
+    key: { $ref: '#/definitions/messageId' },
     version: { type: 'string' },
     type: {
       type: 'string',

@@ -1,24 +1,23 @@
 var nest = require('depnest')
 
 var {SCHEMA_VERSION} = require('./types')
-var Poll = require('./poll/sync/parsePoll')
-var isV1ChooseOnePoll = require('./poll/sync/isChooseOnePoll')
+var parseChooseOnePoll = require('./poll/sync/parseChooseOne')
 var isV1Poll = require('./poll/sync/isPoll')
 
-var Position = require('./position/sync/parsePosition')
+var parseChooseOnePosition = require('./position/sync/parseChooseOne')
 var isV1ChooseOnePosition = require('./position/sync/isChooseOnePosition')
 var isV1Position = require('./position/sync/isPosition')
 
 module.exports = {
   gives: nest({
     'poll': [
-      'parse',
+      'parseChooseOne',
       'getErrors',
       'isChooseOne',
       'isPoll'
     ],
     'position': [
-      'parse',
+      'parseChooseOne',
       'getErrors',
       'isChooseOne',
       'isPosition'
@@ -30,13 +29,13 @@ module.exports = {
   create: function (api) {
     return nest({
       poll: {
-        parse: parsePoll,
+        parseChooseOne: parseChooseOnePoll,
         getErrors: getPollErrors,
         isChooseOne: isChooseOnePoll,
         isPoll
       },
       position: {
-        parse: parsePosition,
+        parseChooseOne: parseChooseOnePosition,
         getErrors: getPositionErrors,
         isChooseOne: isChooseOnePosition,
         isPosition
@@ -59,12 +58,6 @@ module.exports = {
       return isV1ChooseOnePoll(poll) ? true : undefined
     }
 
-    function parsePoll (poll) {
-      if (!isV1Poll(poll)) { return }
-
-      return Poll(poll)
-    }
-
     function getPollErrors (poll) {
       if (!poll.errors) { poll.errors = {} }
 
@@ -80,12 +73,6 @@ module.exports = {
 
     function isChooseOnePosition (position) {
       return isV1ChooseOnePosition(position) ? true : undefined
-    }
-
-    function parsePosition (position) {
-      if (!isV1Position(position)) { return }
-
-      return Position(position)
     }
 
     function getPositionErrors (postition) {

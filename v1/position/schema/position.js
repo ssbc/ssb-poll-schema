@@ -19,7 +19,6 @@ const schema = {
     root: {
       $ref: '#/definitions/messageId'
     },
-    text: { type: 'string' },
     reason: { type: 'string' },
     details: {
       oneOf: [

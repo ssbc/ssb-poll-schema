@@ -1,29 +1,41 @@
 const test = require('tape')
-const ChooseOne = require('../../../poll/sync/parseChooseOne')
-const isPoll = require('../../../poll/sync/isPoll')
+const parseChooseOne = require('../../../poll/sync/parseChooseOne')
+const Validator = require('is-my-json-valid')
+const normalisedPollSchema = require('../../../../normalised-schema/poll')
 
-test('Position - ChooseOne', function (t) {
-  var invalidPoll = ChooseOne({
-  })
-  t.false(isPoll(invalidPoll), 'invalid')
+const isNormalisedPoll = Validator(normalisedPollSchema)
 
-  var validPoll = ChooseOne({
-    title: 'how many food',
-    choices: [1, 2, 'three'],
-    closesAt: new Date().toISOString()
-  })
-  t.true(isPoll(validPoll), 'simple (passes isPoll)')
-  t.true(isPoll.chooseOne(validPoll), 'simple (passes isPoll.chooseOne)')
-
-  var fullPollMsg = {
-    key: '%somekey',
+test('Poll parsing - parseChooseOne', function (t) {
+  var validPoll = parseChooseOne({
+    key: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     value: {
-      content: validPoll
-    }
-  }
-  t.true(isPoll(fullPollMsg), 'simple (full msg)')
-  // NOTE - we might want an isChooseOnePoll in future
-  // t.true(isChooseOnePoll(fullPollMsg), 'simple (full msg)')
+      content: {
+        type: 'poll',
+        version: 'v1',
+        title: 'how many food',
+        details: {
+          type: 'chooseOne',
+          choices: [1, 2, 'three']
+        },
+        closesAt: new Date().toISOString()
+      }
+    }})
+  t.true(isNormalisedPoll(validPoll), 'simple (passes isNormalisedPoll)')
 
+  var invalidPoll = parseChooseOne({
+    key: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
+    value: {
+      content: {
+        type: 'poll',
+        // version: 'v1',
+        title: 'how many food',
+        details: {
+          type: 'chooseOne',
+          choices: [1, 2, 'three']
+        },
+        closesAt: new Date().toISOString()
+      }
+    }})
+  t.equal(invalidPoll, undefined, "doesn't parse invalid poll, returns undefined")
   t.end()
 })

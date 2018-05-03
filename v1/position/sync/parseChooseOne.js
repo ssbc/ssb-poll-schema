@@ -1,15 +1,10 @@
-const Position = require('./parsePosition')
-const { CHOOSE_ONE } = require('../../types')
+var msgContent = require('ssb-msg-content')
+var isChooseOnePosition = require('./isChooseOnePosition')
 
-module.exports = function ChooseOne ({ poll, choice, reason, channel, mentions }) {
-  return Position({
-    poll,
-    details: {
-      type: CHOOSE_ONE,
-      choice
-    },
-    reason,
-    channel,
-    mentions
-  })
+function ParseChooseOnePosition (msg) {
+  if (!isChooseOnePosition(msg)) return
+  const content = msgContent(msg)
+  return Object.assign({}, msg, content)
 }
+
+module.exports = ParseChooseOnePosition

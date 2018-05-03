@@ -1,19 +1,10 @@
-const Poll = require('./parsePoll')
-const { CHOOSE_ONE } = require('../../types')
+var msgContent = require('ssb-msg-content')
+var isChooseOnePoll = require('./isChooseOnePoll')
 
-function ChooseOne ({ choices, title, closesAt, body, channel, recps, mentions }) {
-  return Poll({
-    details: {
-      choices,
-      type: CHOOSE_ONE
-    },
-    title,
-    closesAt,
-    body,
-    channel,
-    recps,
-    mentions
-  })
+function ParseChooseOnePoll (msg) {
+  if (!isChooseOnePoll(msg)) return
+  const content = msgContent(msg)
+  return Object.assign({}, msg, content)
 }
 
-module.exports = ChooseOne
+module.exports = ParseChooseOnePoll
