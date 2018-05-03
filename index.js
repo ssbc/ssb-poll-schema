@@ -18,7 +18,7 @@ var isChooseOnePoll = first(sockets.poll.isChooseOne, 'poll.isChooseOne')
 var parseChooseOnePoll = first(sockets.poll.parseChooseOne, 'poll.parseChooseOne')
 isPoll.chooseOne = isChooseOnePoll
 
-var parsePosition = first(sockets.position.parse, 'position.parse')
+var parseChooseOnePosition = first(sockets.position.parseChooseOne, 'position.parseChooseOne')
 var isPosition = first(sockets.position.isPosition, 'position.isPosition')
 var isChooseOnePosition = first(sockets.position.isChooseOne, 'position.isChooseOne')
 var getPositionErrors = (position) => {
@@ -35,7 +35,7 @@ module.exports = {
   isChooseOnePoll,
   isPoll,
 
-  parsePosition,
+  parseChooseOnePosition,
   getPositionErrors,
   isChooseOnePosition,
   isPosition,
