@@ -1,4 +1,6 @@
 const chooseOneDetails = require('./details/chooseOne')
+const rangeDetails = require('./details/range')
+const dotDetails = require('./details/dot')
 const {SCHEMA_VERSION} = require('../../types')
 
 const ssbSchemaDefintions = require('../../lib/ssbSchemaDefintions')
@@ -22,9 +24,8 @@ const schema = {
     reason: { type: 'string' },
     details: {
       oneOf: [
-        // { $ref: '#/definitions/details/dot'},
-        // { $ref: '#/definitions/details/proposal'},
-        // { $ref: '#/definitions/details/score'},
+        { $ref: '#/definitions/details/dot' },
+        { $ref: '#/definitions/details/range' },
         { $ref: '#/definitions/details/chooseOne' }
         // { $ref: '#/definitions/details/rsvp'},
         // { $ref: '#/definitions/details/meeting'},
@@ -36,7 +37,9 @@ const schema = {
   definitions: Object.assign({}, ssbSchemaDefintions, {
     details: {
       type: 'object',
-      chooseOne: chooseOneDetails
+      chooseOne: chooseOneDetails,
+      dot: dotDetails,
+      range: rangeDetails
     }
   })
 }
