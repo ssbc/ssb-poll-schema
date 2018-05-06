@@ -1,6 +1,6 @@
 var schema = {
   type: 'object',
-  required: ['type', 'maxStanceScore', 'choices'],
+  required: ['type', 'numDots', 'choices'],
   properties: {
     type: {
       type: 'string',

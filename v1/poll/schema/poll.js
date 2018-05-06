@@ -1,6 +1,5 @@
 const dotDetails = require('./details/dot.js')
-const proposalDetails = require('./details/proposal.js')
-const scoreDetails = require('./details/score.js')
+const rangeDetails = require('./details/range.js')
 const chooseOneDetails = require('./details/chooseOne.js')
 
 const {SCHEMA_VERSION} = require('../../types')
@@ -23,9 +22,8 @@ const schema = {
     title: { type: 'string' },
     details: {
       oneOf: [
-        // { $ref: '#/definitions/details/dot'},
-        // { $ref: '#/definitions/details/proposal'},
-        // { $ref: '#/definitions/details/score'},
+        { $ref: '#/definitions/details/dot' },
+        { $ref: '#/definitions/details/range' },
         { $ref: '#/definitions/details/chooseOne' }
         // { $ref: '#/definitions/details/rsvp'},
         // { $ref: '#/definitions/details/meeting'},
@@ -40,8 +38,7 @@ const schema = {
     details: {
       type: 'object',
       dot: dotDetails,
-      proposal: proposalDetails,
-      score: scoreDetails,
+      range: rangeDetails,
       chooseOne: chooseOneDetails
     }
   })
