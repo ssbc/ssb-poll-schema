@@ -1,9 +1,9 @@
-const { CHOOSE_ONE } = require('../../../types')
-const typeStringPattern = `^${CHOOSE_ONE}$`
+const { RANGE } = require('../../../types')
+const typeStringPattern = `^${RANGE}$`
 
 var schema = {
   type: 'object',
-  required: ['type', 'choice'],
+  required: ['type', 'choices'],
   properties: {
     type: {
       type: 'string',

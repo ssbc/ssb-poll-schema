@@ -3,7 +3,7 @@ const typeStringPattern = `^${DOT}$`
 
 var schema = {
   type: 'object',
-  required: ['type', 'choice'],
+  required: ['type', 'choices'],
   properties: {
     type: {
       type: 'string',
