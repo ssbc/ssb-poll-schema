@@ -3,7 +3,7 @@ module.exports = {
   DOT: 'dot',
   RANGE: 'range',
   PROPOSAL: 'proposal',
-  RSVP: 'rsvp',
+  MEETING_TIME: 'meetingTime',
   ERROR_POSITION_TYPE: 'ERROR_POSITION_TYPE',
   ERROR_POSITION_LATE: 'ERROR_POSITION_LATE',
   ERROR_POSITION_CHOICE: 'ERROR_POSITION_CHOICE',

@@ -1,6 +1,7 @@
 const chooseOneDetails = require('./details/chooseOne')
 const rangeDetails = require('./details/range')
 const dotDetails = require('./details/dot')
+const proposalDetails = require('./details/proposal')
 const {SCHEMA_VERSION} = require('../../types')
 
 const ssbSchemaDefintions = require('../../lib/ssbSchemaDefintions')
@@ -26,7 +27,8 @@ const schema = {
       oneOf: [
         { $ref: '#/definitions/details/dot' },
         { $ref: '#/definitions/details/range' },
-        { $ref: '#/definitions/details/chooseOne' }
+        { $ref: '#/definitions/details/chooseOne' },
+        { $ref: '#/definitions/details/proposal' }
         // { $ref: '#/definitions/details/rsvp'},
         // { $ref: '#/definitions/details/meeting'},
       ]
@@ -39,7 +41,8 @@ const schema = {
       type: 'object',
       chooseOne: chooseOneDetails,
       dot: dotDetails,
-      range: rangeDetails
+      range: rangeDetails,
+      proposal: proposalDetails
     }
   })
 }
