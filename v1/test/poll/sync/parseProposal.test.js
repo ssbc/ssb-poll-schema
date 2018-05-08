@@ -14,9 +14,8 @@ test('Poll parsing - parseProposal', function (t) {
         version: 'v1',
         title: 'how many food',
         details: {
-          type: 'range',
-          choices: [1, 2, 'three'],
-          maxChoiceScore: 5
+          type: 'proposal',
+          choices: ['agree', 'disagree', 'abstain', 'block']
         },
         closesAt: new Date().toISOString()
       }
@@ -31,9 +30,8 @@ test('Poll parsing - parseProposal', function (t) {
         // version: 'v1',
         title: 'how many food',
         details: {
-          type: 'range',
-          choices: [1, 2, 'three'],
-          maxChoiceScore: 5
+          type: 'proposal',
+          choices: ['agree', 'disagree', 'abstain', 'block']
         },
         closesAt: new Date().toISOString()
       }

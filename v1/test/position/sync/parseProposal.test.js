@@ -14,8 +14,8 @@ test('Position parsing - parseProposal', function (t) {
         type: 'position',
         version: 'v1',
         details: {
-          type: 'range',
-          choices: [1, 2]
+          type: 'proposal',
+          choice: 1
         },
         reason: 'reasons'
       }
@@ -31,8 +31,8 @@ test('Position parsing - parseProposal', function (t) {
           type: 'position',
           version: 'v1',
           details: {
-            type: 'range',
-            choices: [1, 2]
+            type: 'proposal',
+            choice: 1
           },
           reason: 'reasons'
         }
