@@ -5,5 +5,6 @@ module.exports = {
   parseChooseOnePosition: Parser(checkers.isChooseOne),
   parseDotPosition: Parser(checkers.isDot),
   parseRangePosition: Parser(checkers.isRange),
-  parseProposalPosition: Parser(checkers.isProposal)
+  parseProposalPosition: Parser(checkers.isProposal),
+  parseMeetingTimePosition: Parser(checkers.isMeetingTime)
 }

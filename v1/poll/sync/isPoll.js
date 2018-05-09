@@ -7,3 +7,4 @@ module.exports.isChooseOne = makeValidatorWithErrors(require('../schema/chooseOn
 module.exports.isDot = makeValidatorWithErrors(require('../schema/dotPoll'))
 module.exports.isRange = makeValidatorWithErrors(require('../schema/rangePoll'))
 module.exports.isProposal = makeValidatorWithErrors(require('../schema/proposalPoll'))
+module.exports.isMeetingTime = makeValidatorWithErrors(require('../schema/meetingTimePoll'))
