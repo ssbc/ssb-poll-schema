@@ -2,27 +2,36 @@ var nest = require('depnest')
 
 var {SCHEMA_VERSION} = require('./types')
 var parseChooseOnePoll = require('./poll/sync/parseChooseOne')
-var isV1ChooseOnePoll = require('./poll/sync/isChooseOnePoll')
 var parseChooseOnePosition = require('./position/sync/parseChooseOne')
-var isV1ChooseOnePosition = require('./position/sync/isChooseOnePosition')
 
 var parseDotPoll = require('./poll/sync/parseDot')
-var isV1DotPoll = require('./poll/sync/isDotPoll')
 var parseDotPosition = require('./position/sync/parseDot')
-var isV1DotPosition = require('./position/sync/isDotPosition')
 
 var parseRangePoll = require('./poll/sync/parseRange')
-var isV1RangePoll = require('./poll/sync/isRangePoll')
 var parseRangePosition = require('./position/sync/parseRange')
-var isV1RangePosition = require('./position/sync/isRangePosition')
 
 var parseProposalPoll = require('./poll/sync/parseProposal')
-var isV1ProposalPoll = require('./poll/sync/isProposalPoll')
 var parseProposalPosition = require('./position/sync/parseProposal')
-var isV1ProposalPosition = require('./position/sync/isProposalPosition')
 
-var isV1Position = require('./position/sync/isPosition')
-var isV1Poll = require('./poll/sync/isPoll')
+var pollTypeCheckers = {
+  isProposal: require('./poll/sync/isProposalPoll'),
+  isDot: require('./poll/sync/isDotPoll'),
+  isRange: require('./poll/sync/isRangePoll'),
+  isChooseOne: require('./poll/sync/isChooseOnePoll'),
+  isPoll: require('./poll/sync/isPoll')
+}
+
+var depjectifiedPollTypeCheckers = depjectifyTypeCheckers(pollTypeCheckers, depjectFirstify)
+
+var positionTypeCheckers = {
+  isProposal: require('./position/sync/isProposalPosition'),
+  isDot: require('./position/sync/isDotPosition'),
+  isRange: require('./position/sync/isRangePosition'),
+  isChooseOne: require('./position/sync/isChooseOnePosition'),
+  isPosition: require('./position/sync/isPosition')
+}
+
+var depjectifiedPositionTypeCheckers = depjectifyTypeCheckers(positionTypeCheckers, depjectFirstify)
 
 module.exports = {
   gives: nest({
@@ -56,30 +65,20 @@ module.exports = {
   }),
   create: function (api) {
     return nest({
-      poll: {
+      poll: Object.assign(depjectifiedPollTypeCheckers, {
         parseChooseOne: parseChooseOnePoll,
         parseDot: parseDotPoll,
         parseRange: parseRangePoll,
         parseProposal: parseProposalPoll,
-        isChooseOne: depjectFirstify(isV1ChooseOnePoll),
-        isDot: depjectFirstify(isV1DotPoll),
-        isRange: depjectFirstify(isV1RangePoll),
-        isProposal: depjectFirstify(isV1ProposalPoll),
-        isPoll: depjectFirstify(isV1Poll),
         getErrors: getPollErrors
-      },
-      position: {
+      }),
+      position: Object.assign(depjectifiedPositionTypeCheckers, {
         parseChooseOne: parseChooseOnePosition,
         parseDot: parseDotPosition,
         parseRange: parseRangePosition,
         parseProposal: parseProposalPosition,
-        isChooseOne: depjectFirstify(isV1ChooseOnePosition),
-        isDot: depjectFirstify(isV1DotPosition),
-        isRange: depjectFirstify(isV1RangePosition),
-        isProposal: depjectFirstify(isV1ProposalPosition),
-        isPosition: depjectFirstify(isV1Position),
         getErrors: getPositionErrors
-      },
+      }),
       version: {
         string: versionString
       }
@@ -93,21 +92,28 @@ module.exports = {
     function getPollErrors (poll) {
       if (!poll.errors) { poll.errors = {} }
 
-      isV1Poll(poll)
+      pollTypeCheckers.isPoll(poll)
 
-      poll.errors[SCHEMA_VERSION] = isV1Poll.errors
+      poll.errors[SCHEMA_VERSION] = pollTypeCheckers.isPoll.errors
       return poll
     }
 
     function getPositionErrors (postition) {
       if (!postition.errors) { postition.errors = {} }
 
-      isV1Position(postition)
+      positionTypeCheckers.isPosition(postition)
 
-      postition.errors[SCHEMA_VERSION] = isV1Position.errors
+      postition.errors[SCHEMA_VERSION] = positionTypeCheckers.isPosition.errors
       return postition
     }
   }
+}
+
+function depjectifyTypeCheckers (checkers, depjectify) {
+  return Object.keys(checkers).reduce(function (acc, checker) {
+    acc[checker] = depjectify(checkers[checker])
+    return acc
+  }, {})
 }
 
 function depjectFirstify (mapper) {
