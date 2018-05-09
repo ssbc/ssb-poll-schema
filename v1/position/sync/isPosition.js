@@ -1,11 +1,9 @@
 const schema = require('../schema/position')
-const { CHOOSE_ONE, RANGE, DOT, PROPOSAL } = require('../../types')
+const makeValidatorWithErrors = require('../../lib/ValidatorWithErrors')
 
-var makeValidatorWithErrors = require('../../lib/ValidatorWithErrors')
+module.exports.isPosition = makeValidatorWithErrors(schema)
 
-module.exports = makeValidatorWithErrors(schema)
-
-module.exports[CHOOSE_ONE] = makeValidatorWithErrors(require('../schema/chooseOnePosition'))
-module.exports[DOT] = makeValidatorWithErrors(require('../schema/dotPosition'))
-module.exports[RANGE] = makeValidatorWithErrors(require('../schema/rangePosition'))
-module.exports[PROPOSAL] = makeValidatorWithErrors(require('../schema/proposalPosition'))
+module.exports.isChooseOne = makeValidatorWithErrors(require('../schema/chooseOnePosition'))
+module.exports.isDot = makeValidatorWithErrors(require('../schema/dotPosition'))
+module.exports.isRange = makeValidatorWithErrors(require('../schema/rangePosition'))
+module.exports.isProposal = makeValidatorWithErrors(require('../schema/proposalPosition'))

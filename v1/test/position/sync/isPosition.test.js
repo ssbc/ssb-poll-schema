@@ -1,5 +1,5 @@
 const test = require('tape')
-const isPosition = require('../../../position/sync/isPosition')
+const { isPosition } = require('../../../position/sync/isPosition')
 const { CHOOSE_ONE } = require('../../../types')
 
 // this is for testing the attributes that are required for all polls

@@ -1,10 +1,9 @@
 const Parser = require('../../lib/Parser')
-const { CHOOSE_ONE, DOT, PROPOSAL, RANGE } = require('../../types')
 const checkers = require('./isPoll')
 
 module.exports = {
-  parseChooseOnePoll: Parser(checkers[CHOOSE_ONE]),
-  parseDotPoll: Parser(checkers[DOT]),
-  parseRangePoll: Parser(checkers[RANGE]),
-  parseProposalPoll: Parser(checkers[PROPOSAL])
+  parseChooseOnePoll: Parser(checkers.isChooseOne),
+  parseDotPoll: Parser(checkers.isDot),
+  parseRangePoll: Parser(checkers.isRange),
+  parseProposalPoll: Parser(checkers.isProposal)
 }

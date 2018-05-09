@@ -1,6 +1,6 @@
 var nest = require('depnest')
 
-var {SCHEMA_VERSION, PROPOSAL, DOT, RANGE, CHOOSE_ONE} = require('./types')
+var {SCHEMA_VERSION} = require('./types')
 
 var {
   parseChooseOnePoll,
@@ -16,27 +16,12 @@ var {
   parseProposalPosition
 } = require('./position/sync/parse')
 
-var isPoll = require('./poll/sync/isPoll')
-var pollTypeCheckers = {
-  isProposal: isPoll[PROPOSAL],
-  isDot: isPoll[DOT],
-  isRange: isPoll[RANGE],
-  isChooseOne: isPoll[CHOOSE_ONE],
-  isPoll
-}
+var pollCheckers = require('./poll/sync/isPoll')
+var positionCheckers = require('./position/sync/isPosition')
 
-var depjectifiedPollTypeCheckers = depjectifyTypeCheckers(pollTypeCheckers, depjectFirstify)
+var depjectifiedPollTypeCheckers = depjectifyTypeCheckers(pollCheckers, depjectFirstify)
+var depjectifiedPositionTypeCheckers = depjectifyTypeCheckers(positionCheckers, depjectFirstify)
 
-var isPosition = require('./position/sync/isPosition')
-var positionTypeCheckers = {
-  isProposal: isPosition[PROPOSAL],
-  isDot: isPosition[DOT],
-  isRange: isPosition[RANGE],
-  isChooseOne: isPosition[CHOOSE_ONE],
-  isPosition
-}
-
-var depjectifiedPositionTypeCheckers = depjectifyTypeCheckers(positionTypeCheckers, depjectFirstify)
 
 module.exports = {
   gives: nest({
@@ -97,18 +82,18 @@ module.exports = {
     function getPollErrors (poll) {
       if (!poll.errors) { poll.errors = {} }
 
-      pollTypeCheckers.isPoll(poll)
+      pollCheckers.isPoll(poll)
 
-      poll.errors[SCHEMA_VERSION] = pollTypeCheckers.isPoll.errors
+      poll.errors[SCHEMA_VERSION] = pollCheckers.isPoll.errors
       return poll
     }
 
     function getPositionErrors (postition) {
       if (!postition.errors) { postition.errors = {} }
 
-      positionTypeCheckers.isPosition(postition)
+      positionCheckers.isPosition(postition)
 
-      postition.errors[SCHEMA_VERSION] = positionTypeCheckers.isPosition.errors
+      postition.errors[SCHEMA_VERSION] = positionCheckers.isPosition.errors
       return postition
     }
   }
