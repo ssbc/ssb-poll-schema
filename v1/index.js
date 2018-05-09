@@ -31,24 +31,24 @@ module.exports = {
       'parseDot',
       'parseRange',
       'parseProposal',
-      'getErrors',
       'isChooseOne',
       'isDot',
       'isRange',
+      'isProposal',
       'isPoll',
-      'isProposal'
+      'getErrors'
     ],
     'position': [
       'parseChooseOne',
       'parseDot',
       'parseRange',
       'parseProposal',
-      'getErrors',
       'isChooseOne',
       'isDot',
       'isRange',
+      'isProposal',
       'isPosition',
-      'isProposal'
+      'getErrors'
     ],
     'version': [
       'string'
@@ -61,24 +61,24 @@ module.exports = {
         parseDot: parseDotPoll,
         parseRange: parseRangePoll,
         parseProposal: parseProposalPoll,
-        getErrors: getPollErrors,
         isChooseOne: depjectMappify(isV1ChooseOnePoll),
         isDot: depjectMappify(isV1DotPoll),
         isRange: depjectMappify(isV1RangePoll),
         isProposal: depjectMappify(isV1ProposalPoll),
-        isPoll: depjectMappify(isV1Poll)
+        isPoll: depjectMappify(isV1Poll),
+        getErrors: getPollErrors
       },
       position: {
         parseChooseOne: parseChooseOnePosition,
         parseDot: parseDotPosition,
         parseRange: parseRangePosition,
         parseProposal: parseProposalPosition,
-        getErrors: getPositionErrors,
         isChooseOne: depjectMappify(isV1ChooseOnePosition),
         isDot: depjectMappify(isV1DotPosition),
         isRange: depjectMappify(isV1RangePosition),
         isProposal: depjectMappify(isV1ProposalPosition),
-        isPosition: depjectMappify(isV1Position)
+        isPosition: depjectMappify(isV1Position),
+        getErrors: getPositionErrors
       },
       version: {
         string: versionString
