@@ -31,7 +31,6 @@ test('parsing a v1 position returns an object that is a valid normalised positio
     }
   }
   t.ok(isPosition(validPosition))
-  console.log(getPositionErrors(validPosition))
 
   var parsedPosition = parseChooseOnePosition(validPosition)
   t.ok(isNormalisedPosition(parsedPosition))
