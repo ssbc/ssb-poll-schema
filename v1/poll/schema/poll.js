@@ -2,6 +2,7 @@ const dotDetails = require('./details/dot.js')
 const rangeDetails = require('./details/range.js')
 const chooseOneDetails = require('./details/chooseOne.js')
 const proposalDetails = require('./details/proposal.js')
+const meetingTimeDetails = require('./details/meetingTime.js')
 
 const {SCHEMA_VERSION} = require('../../types')
 
@@ -26,7 +27,8 @@ const schema = {
         { $ref: '#/definitions/details/dot' },
         { $ref: '#/definitions/details/range' },
         { $ref: '#/definitions/details/chooseOne' },
-        { $ref: '#/definitions/details/proposal' }
+        { $ref: '#/definitions/details/proposal' },
+        { $ref: '#/definitions/details/meetingTime' }
         // { $ref: '#/definitions/details/rsvp'},
       ]
     },
@@ -41,7 +43,8 @@ const schema = {
       dot: dotDetails,
       range: rangeDetails,
       chooseOne: chooseOneDetails,
-      proposal: proposalDetails
+      proposal: proposalDetails,
+      meetingTime: meetingTimeDetails
     }
   })
 }
