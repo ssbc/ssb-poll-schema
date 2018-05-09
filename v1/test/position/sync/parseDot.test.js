@@ -1,5 +1,5 @@
 const test = require('tape')
-const parseDot = require('../../../position/sync/parseDot')
+const {parseDotPosition: parseDot} = require('../../../position/sync/parse')
 const Validator = require('is-my-json-valid')
 const normalisedPositionSchema = require('../../../../normalised-schema/position')
 

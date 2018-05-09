@@ -1,5 +1,5 @@
 const test = require('tape')
-const parseRange = require('../../../poll/sync/parseRange')
+const {parseRangePoll: parseRange} = require('../../../poll/sync/parse')
 const Validator = require('is-my-json-valid')
 const normalisedPollSchema = require('../../../../normalised-schema/poll')
 

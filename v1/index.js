@@ -1,34 +1,39 @@
 var nest = require('depnest')
 
-var {SCHEMA_VERSION} = require('./types')
-var parseChooseOnePoll = require('./poll/sync/parseChooseOne')
-var parseChooseOnePosition = require('./position/sync/parseChooseOne')
+var {SCHEMA_VERSION, PROPOSAL, DOT, RANGE, CHOOSE_ONE} = require('./types')
 
-var parseDotPoll = require('./poll/sync/parseDot')
-var parseDotPosition = require('./position/sync/parseDot')
+var {
+  parseChooseOnePoll,
+  parseDotPoll,
+  parseRangePoll,
+  parseProposalPoll
+} = require('./poll/sync/parse')
 
-var parseRangePoll = require('./poll/sync/parseRange')
-var parseRangePosition = require('./position/sync/parseRange')
+var {
+  parseChooseOnePosition,
+  parseDotPosition,
+  parseRangePosition,
+  parseProposalPosition
+} = require('./position/sync/parse')
 
-var parseProposalPoll = require('./poll/sync/parseProposal')
-var parseProposalPosition = require('./position/sync/parseProposal')
-
+var isPoll = require('./poll/sync/isPoll')
 var pollTypeCheckers = {
-  isProposal: require('./poll/sync/isProposalPoll'),
-  isDot: require('./poll/sync/isDotPoll'),
-  isRange: require('./poll/sync/isRangePoll'),
-  isChooseOne: require('./poll/sync/isChooseOnePoll'),
-  isPoll: require('./poll/sync/isPoll')
+  isProposal: isPoll[PROPOSAL],
+  isDot: isPoll[DOT],
+  isRange: isPoll[RANGE],
+  isChooseOne: isPoll[CHOOSE_ONE],
+  isPoll
 }
 
 var depjectifiedPollTypeCheckers = depjectifyTypeCheckers(pollTypeCheckers, depjectFirstify)
 
+var isPosition = require('./position/sync/isPosition')
 var positionTypeCheckers = {
-  isProposal: require('./position/sync/isProposalPosition'),
-  isDot: require('./position/sync/isDotPosition'),
-  isRange: require('./position/sync/isRangePosition'),
-  isChooseOne: require('./position/sync/isChooseOnePosition'),
-  isPosition: require('./position/sync/isPosition')
+  isProposal: isPosition[PROPOSAL],
+  isDot: isPosition[DOT],
+  isRange: isPosition[RANGE],
+  isChooseOne: isPosition[CHOOSE_ONE],
+  isPosition
 }
 
 var depjectifiedPositionTypeCheckers = depjectifyTypeCheckers(positionTypeCheckers, depjectFirstify)

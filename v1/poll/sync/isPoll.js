@@ -1,24 +1,11 @@
-const Validator = require('is-my-json-valid')
 const schema = require('../schema/poll')
-const validator = Validator(schema, {verbose: true})
-const getMsgContent = require('ssb-msg-content')
-const { CHOOSE_ONE, DOT, RANGE, PROPOSAL } = require('../../types')
+const { CHOOSE_ONE, RANGE, DOT, PROPOSAL } = require('../../types')
 
-const isChooseOnePoll = require('./isChooseOnePoll')
-const isRangePoll = require('./isRangePoll')
-const isDotPoll = require('./isDotPoll')
-const isProposalPoll = require('./isProposalPoll')
+var makeValidatorWithErrors = require('../../lib/ValidatorWithErrors')
 
-module.exports = function isPoll (obj) {
-  const result = validator(getMsgContent(obj))
+module.exports = makeValidatorWithErrors(schema)
 
-  // exposes error messages provided by is-my-json-valid
-  isPoll.errors = validator.errors
-
-  return result
-}
-
-module.exports[CHOOSE_ONE] = isChooseOnePoll
-module.exports[DOT] = isDotPoll
-module.exports[RANGE] = isRangePoll
-module.exports[PROPOSAL] = isProposalPoll
+module.exports[CHOOSE_ONE] = makeValidatorWithErrors(require('../schema/chooseOnePoll'))
+module.exports[DOT] = makeValidatorWithErrors(require('../schema/dotPoll'))
+module.exports[RANGE] = makeValidatorWithErrors(require('../schema/rangePoll'))
+module.exports[PROPOSAL] = makeValidatorWithErrors(require('../schema/proposalPoll'))
