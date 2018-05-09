@@ -1,10 +1,19 @@
-const schema = require('../schema/position')
 const makeValidatorWithErrors = require('../../lib/ValidatorWithErrors')
 
-module.exports.isPosition = makeValidatorWithErrors(schema)
+const {
+  dot,
+  range,
+  chooseOne,
+  meetingTime,
+  proposal,
 
-module.exports.isChooseOne = makeValidatorWithErrors(require('../schema/chooseOnePosition'))
-module.exports.isDot = makeValidatorWithErrors(require('../schema/dotPosition'))
-module.exports.isRange = makeValidatorWithErrors(require('../schema/rangePosition'))
-module.exports.isProposal = makeValidatorWithErrors(require('../schema/proposalPosition'))
-module.exports.isMeetingTime = makeValidatorWithErrors(require('../schema/meetingTimePosition'))
+  position
+} = require('../schema/position')
+
+module.exports.isPosition = makeValidatorWithErrors(position)
+
+module.exports.isChooseOne = makeValidatorWithErrors(chooseOne)
+module.exports.isDot = makeValidatorWithErrors(dot)
+module.exports.isRange = makeValidatorWithErrors(range)
+module.exports.isProposal = makeValidatorWithErrors(proposal)
+module.exports.isMeetingTime = makeValidatorWithErrors(meetingTime)

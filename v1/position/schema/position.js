@@ -1,3 +1,5 @@
+const cloneDeep = require('lodash.clonedeep')
+
 const chooseOneDetails = require('./details/chooseOne')
 const rangeDetails = require('./details/range')
 const dotDetails = require('./details/dot')
@@ -49,4 +51,25 @@ const schema = {
   })
 }
 
-module.exports = schema
+module.exports.position = schema
+
+const chooseOneSchema = cloneDeep(schema)
+chooseOneSchema.properties.details = { $ref: '#/definitions/details/chooseOne' }
+
+const dotSchema = cloneDeep(schema)
+dotSchema.properties.details = { $ref: '#/definitions/details/dot' }
+
+const meetingTimeSchema = cloneDeep(schema)
+meetingTimeSchema.properties.details = { $ref: '#/definitions/details/meetingTime' }
+
+const proposalSchema = cloneDeep(schema)
+proposalSchema.properties.details = { $ref: '#/definitions/details/proposal' }
+
+const rangeSchema = cloneDeep(schema)
+rangeSchema.properties.details = { $ref: '#/definitions/details/range' }
+
+module.exports.chooseOne = chooseOneSchema
+module.exports.dot = dotSchema
+module.exports.meetingTime = meetingTimeSchema
+module.exports.proposal = proposalSchema
+module.exports.range = rangeSchema
