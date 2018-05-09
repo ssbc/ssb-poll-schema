@@ -61,11 +61,11 @@ module.exports = {
         parseDot: parseDotPoll,
         parseRange: parseRangePoll,
         parseProposal: parseProposalPoll,
-        isChooseOne: depjectMappify(isV1ChooseOnePoll),
-        isDot: depjectMappify(isV1DotPoll),
-        isRange: depjectMappify(isV1RangePoll),
-        isProposal: depjectMappify(isV1ProposalPoll),
-        isPoll: depjectMappify(isV1Poll),
+        isChooseOne: depjectFirstify(isV1ChooseOnePoll),
+        isDot: depjectFirstify(isV1DotPoll),
+        isRange: depjectFirstify(isV1RangePoll),
+        isProposal: depjectFirstify(isV1ProposalPoll),
+        isPoll: depjectFirstify(isV1Poll),
         getErrors: getPollErrors
       },
       position: {
@@ -73,11 +73,11 @@ module.exports = {
         parseDot: parseDotPosition,
         parseRange: parseRangePosition,
         parseProposal: parseProposalPosition,
-        isChooseOne: depjectMappify(isV1ChooseOnePosition),
-        isDot: depjectMappify(isV1DotPosition),
-        isRange: depjectMappify(isV1RangePosition),
-        isProposal: depjectMappify(isV1ProposalPosition),
-        isPosition: depjectMappify(isV1Position),
+        isChooseOne: depjectFirstify(isV1ChooseOnePosition),
+        isDot: depjectFirstify(isV1DotPosition),
+        isRange: depjectFirstify(isV1RangePosition),
+        isProposal: depjectFirstify(isV1ProposalPosition),
+        isPosition: depjectFirstify(isV1Position),
         getErrors: getPositionErrors
       },
       version: {
@@ -110,7 +110,7 @@ module.exports = {
   }
 }
 
-function depjectMappify (mapper) {
+function depjectFirstify (mapper) {
   return function (item) {
     return mapper(item) ? true : undefined
   }
