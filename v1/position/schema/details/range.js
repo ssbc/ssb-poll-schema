@@ -11,7 +11,6 @@ const schema = {
     },
     choices: {
       type: 'array',
-      minimum: 0,
       items: {
         type: 'integer',
         minimum: 0

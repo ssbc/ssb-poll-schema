@@ -97,7 +97,8 @@ module.exports = {
     }
   }
 }
-
+// depject first keeps looking until something doesn't return undefined
+// This stuff converts a validator that returns bools to return true or undefined.
 function depjectifyTypeCheckers (checkers, depjectify) {
   return Object.keys(checkers).reduce(function (acc, checker) {
     acc[checker] = depjectify(checkers[checker])
