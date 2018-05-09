@@ -19,9 +19,8 @@ var {
 var pollCheckers = require('./poll/sync/isPoll')
 var positionCheckers = require('./position/sync/isPosition')
 
-var depjectifiedPollTypeCheckers = depjectifyTypeCheckers(pollCheckers, depjectFirstify)
-var depjectifiedPositionTypeCheckers = depjectifyTypeCheckers(positionCheckers, depjectFirstify)
-
+var depjectifiedPollTypeCheckers = depjectifyTypeCheckers(pollCheckers, firstify)
+var depjectifiedPositionTypeCheckers = depjectifyTypeCheckers(positionCheckers, firstify)
 
 module.exports = {
   gives: nest({
@@ -106,7 +105,7 @@ function depjectifyTypeCheckers (checkers, depjectify) {
   }, {})
 }
 
-function depjectFirstify (mapper) {
+function firstify (mapper) {
   return function (item) {
     return mapper(item) ? true : undefined
   }
