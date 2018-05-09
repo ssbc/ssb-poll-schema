@@ -1,12 +1,12 @@
 const test = require('tape')
-const {parseChooseOnePoll: parseChooseOne} = require('../../../poll/sync/parse')
+const {parseDotPoll: parseDot} = require('../../../poll/sync/parse')
 const Validator = require('is-my-json-valid')
 const normalisedPollSchema = require('../../../../normalised-schema/poll')
 
 const isNormalisedPoll = Validator(normalisedPollSchema)
 
-test('Poll parsing - parseChooseOne', function (t) {
-  const validPoll = parseChooseOne({
+test('Poll parsing - parseDot', function (t) {
+  const validPoll = parseDot({
     key: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     value: {
       content: {
@@ -14,15 +14,16 @@ test('Poll parsing - parseChooseOne', function (t) {
         version: 'v1',
         title: 'how many food',
         details: {
-          type: 'chooseOne',
-          choices: [1, 2, 'three']
+          type: 'dot',
+          choices: [1, 2, 'three'],
+          numDots: 6
         },
         closesAt: new Date().toISOString()
       }
     }})
   t.true(isNormalisedPoll(validPoll), 'simple (passes isNormalisedPoll)')
 
-  const invalidPoll = parseChooseOne({
+  const invalidPoll = parseDot({
     key: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     value: {
       content: {
@@ -30,8 +31,9 @@ test('Poll parsing - parseChooseOne', function (t) {
         // version: 'v1',
         title: 'how many food',
         details: {
-          type: 'chooseOne',
-          choices: [1, 2, 'three']
+          type: 'dot',
+          choices: [1, 2, 'three'],
+          numDots: 6
         },
         closesAt: new Date().toISOString()
       }

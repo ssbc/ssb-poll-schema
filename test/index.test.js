@@ -1,13 +1,13 @@
-var test = require('tape')
-var Validate = require('is-my-json-valid')
-var pollSchema = require('../normalised-schema/poll')
-var positionSchema = require('../normalised-schema/position')
+const test = require('tape')
+const Validate = require('is-my-json-valid')
+const pollSchema = require('../normalised-schema/poll')
+const positionSchema = require('../normalised-schema/position')
 
-var isNormalisedPoll = Validate(pollSchema)
-var isNormalisedPosition = Validate(positionSchema)
-var { CHOOSE_ONE } = require('../v1/types')
+const isNormalisedPoll = Validate(pollSchema)
+const isNormalisedPosition = Validate(positionSchema)
+const { CHOOSE_ONE } = require('../v1/types')
 
-var {
+const {
   isPoll,
   parseChooseOnePoll,
   getPollErrors,
@@ -20,7 +20,7 @@ var {
 } = require('../')
 
 test('parsing a v1 position returns an object that is a valid normalised position object', function (t) {
-  var validPosition = {
+  const validPosition = {
     key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     type: 'position',
     version: 'v1',
@@ -32,13 +32,13 @@ test('parsing a v1 position returns an object that is a valid normalised positio
   }
   t.ok(isPosition(validPosition))
 
-  var parsedPosition = parseChooseOnePosition(validPosition)
+  const parsedPosition = parseChooseOnePosition(validPosition)
   t.ok(isNormalisedPosition(parsedPosition))
   t.end()
 })
 
 test('parsing a v1 poll returns an object that is a valid normalised position object', function (t) {
-  var fullyFeatured = {
+  const fullyFeatured = {
     key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     type: 'poll',
     version: 'v1',
@@ -61,7 +61,7 @@ test('parsing a v1 poll returns an object that is a valid normalised position ob
     closesAt: new Date().toISOString()
   }
 
-  var parsedPoll = parseChooseOnePoll(fullyFeatured)
+  const parsedPoll = parseChooseOnePoll(fullyFeatured)
   t.ok(isNormalisedPoll(parsedPoll))
   t.end()
 })
@@ -72,7 +72,7 @@ test('version gets an object with version strings', function (t) {
 })
 
 test('can validate a v1 poll', function (t) {
-  var fullyFeatured = {
+  const fullyFeatured = {
     key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     type: 'poll',
     version: 'v1',
@@ -99,7 +99,7 @@ test('can validate a v1 poll', function (t) {
 })
 
 test('can get all the errors returned by the poll parsers, keyed by schema version', function (t) {
-  var invalid = {
+  const invalid = {
     key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     type: 'poll',
     version: 'v1',
@@ -107,18 +107,18 @@ test('can get all the errors returned by the poll parsers, keyed by schema versi
     closesAt: new Date().toISOString()
   }
 
-  var errors = getPollErrors(invalid)
+  const errors = getPollErrors(invalid)
   t.ok(errors.v1)
   t.end()
 })
 
 test('can get all the errors returned by the position parsers, keyed by schema version', function (t) {
-  var invalid = {
+  const invalid = {
     type: 'position',
     version: 'v1',
     root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256'
   }
-  var errors = getPositionErrors(invalid)
+  const errors = getPositionErrors(invalid)
   t.ok(errors.v1)
   t.end()
 })

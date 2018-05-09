@@ -1,12 +1,12 @@
 const test = require('tape')
-const {parseChooseOnePosition: parseChooseOne} = require('../../../position/sync/parse')
+const {parseRangePosition: parseRange} = require('../../../position/sync/parse')
 const Validator = require('is-my-json-valid')
 const normalisedPositionSchema = require('../../../../normalised-schema/position')
 
 const isNormalisedPosition = Validator(normalisedPositionSchema)
 
-test('Position parsing - parseChooseOne', function (t) {
-  const validPosition = parseChooseOne({
+test('Position parsing - parseRange', function (t) {
+  const validPosition = parseRange({
     key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     value: {
       content: {
@@ -14,15 +14,15 @@ test('Position parsing - parseChooseOne', function (t) {
         type: 'position',
         version: 'v1',
         details: {
-          type: 'chooseOne',
-          choice: 1
+          type: 'range',
+          choices: [1, 2]
         },
         reason: 'reasons'
       }
     }})
   t.true(isNormalisedPosition(validPosition), 'simple (passes isNormalisedPosition)')
 
-  const invalidPosition = parseChooseOne(
+  const invalidPosition = parseRange(
     {
       key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
       value: {
@@ -31,8 +31,8 @@ test('Position parsing - parseChooseOne', function (t) {
           type: 'position',
           version: 'v1',
           details: {
-            type: 'chooseOne',
-            choice: 1
+            type: 'range',
+            choices: [1, 2]
           },
           reason: 'reasons'
         }

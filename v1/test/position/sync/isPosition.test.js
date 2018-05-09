@@ -1,10 +1,10 @@
 const test = require('tape')
-const isPosition = require('../../../position/sync/isPosition')
+const { isPosition } = require('../../../position/sync/isPosition')
 const { CHOOSE_ONE } = require('../../../types')
 
 // this is for testing the attributes that are required for all polls
 test('Position - common requirements', function (t) {
-  var missingDetails = {
+  const missingDetails = {
     type: 'position',
     poll: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     details: undefined
@@ -12,7 +12,7 @@ test('Position - common requirements', function (t) {
   t.false(isPosition(missingDetails), 'needs details')
   t.true(isPosition.errors, 'failing validations have errors')
 
-  var missingPoll = {
+  const missingPoll = {
     type: 'position',
     details: {
       type: CHOOSE_ONE,
@@ -21,7 +21,7 @@ test('Position - common requirements', function (t) {
   }
   t.false(isPosition(missingPoll), 'needs poll')
 
-  var validPosition = {
+  const validPosition = {
     type: 'position',
     root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     version: 'v1',
@@ -37,7 +37,7 @@ test('Position - common requirements', function (t) {
 })
 
 test('Chooseone Position must have at least one choice', function (t) {
-  var missingChoice = {
+  const missingChoice = {
     type: 'position',
     root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     version: 'v1',

@@ -1,18 +1,19 @@
-const validator = require('is-my-json-valid')
-const schema = require('../schema/position')
-const isPositionContent = validator(schema, {verbose: true})
-const getMsgContent = require('ssb-msg-content')
-const { CHOOSE_ONE } = require('../../types')
+const makeValidatorWithErrors = require('../../lib/ValidatorWithErrors')
 
-const isChooseOnePosition = require('./isChooseOnePosition')
+const {
+  dot,
+  range,
+  chooseOne,
+  meetingTime,
+  proposal,
 
-module.exports = function isPosition (obj) {
-  const result = isPositionContent(getMsgContent(obj))
+  position
+} = require('../schema/position')
 
-  // exposes error messages provided by is-my-json-valid
-  isPosition.errors = isPositionContent.errors
+module.exports.isPosition = makeValidatorWithErrors(position)
 
-  return result
-}
-
-module.exports[CHOOSE_ONE] = isChooseOnePosition
+module.exports.isChooseOne = makeValidatorWithErrors(chooseOne)
+module.exports.isDot = makeValidatorWithErrors(dot)
+module.exports.isRange = makeValidatorWithErrors(range)
+module.exports.isProposal = makeValidatorWithErrors(proposal)
+module.exports.isMeetingTime = makeValidatorWithErrors(meetingTime)

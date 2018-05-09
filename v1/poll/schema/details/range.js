@@ -1,10 +1,13 @@
+const { RANGE } = require('../../../types')
+const typeStringPattern = `^${RANGE}$`
+
 const schema = {
   type: 'object',
   required: ['type', 'maxChoiceScore', 'choices'],
   properties: {
     type: {
       type: 'string',
-      pattern: '^score$'
+      pattern: typeStringPattern
     },
     maxChoiceScore: {
       type: 'integer',

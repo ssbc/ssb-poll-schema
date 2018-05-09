@@ -1,5 +1,5 @@
-const { CHOOSE_ONE } = require('../../../types')
-const typeStringPattern = `^${CHOOSE_ONE}$`
+const { MEETING_TIME } = require('../../../types')
+const typeStringPattern = `^${MEETING_TIME}$`
 
 const schema = {
   type: 'object',
@@ -11,7 +11,10 @@ const schema = {
     },
     choices: {
       type: 'array',
-      minitems: 1
+      items: {
+        type: 'string',
+        format: 'date-time'
+      }
     }
   }
 }

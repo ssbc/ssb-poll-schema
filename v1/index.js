@@ -1,27 +1,52 @@
-var nest = require('depnest')
+const nest = require('depnest')
 
-var {SCHEMA_VERSION} = require('./types')
-var parseChooseOnePoll = require('./poll/sync/parseChooseOne')
-var isV1ChooseOnePoll = require('./poll/sync/isChooseOnePoll')
-var isV1Poll = require('./poll/sync/isPoll')
+const {SCHEMA_VERSION} = require('./types')
 
-var parseChooseOnePosition = require('./position/sync/parseChooseOne')
-var isV1ChooseOnePosition = require('./position/sync/isChooseOnePosition')
-var isV1Position = require('./position/sync/isPosition')
+const {
+  parseChooseOnePoll,
+  parseDotPoll,
+  parseRangePoll,
+  parseProposalPoll
+} = require('./poll/sync/parse')
+
+const {
+  parseChooseOnePosition,
+  parseDotPosition,
+  parseRangePosition,
+  parseProposalPosition
+} = require('./position/sync/parse')
+
+const pollCheckers = require('./poll/sync/isPoll')
+const positionCheckers = require('./position/sync/isPosition')
+
+const depjectifiedPollTypeCheckers = depjectifyTypeCheckers(pollCheckers, firstify)
+const depjectifiedPositionTypeCheckers = depjectifyTypeCheckers(positionCheckers, firstify)
 
 module.exports = {
   gives: nest({
     'poll': [
       'parseChooseOne',
-      'getErrors',
+      'parseDot',
+      'parseRange',
+      'parseProposal',
       'isChooseOne',
-      'isPoll'
+      'isDot',
+      'isRange',
+      'isProposal',
+      'isPoll',
+      'getErrors'
     ],
     'position': [
       'parseChooseOne',
-      'getErrors',
+      'parseDot',
+      'parseRange',
+      'parseProposal',
       'isChooseOne',
-      'isPosition'
+      'isDot',
+      'isRange',
+      'isProposal',
+      'isPosition',
+      'getErrors'
     ],
     'version': [
       'string'
@@ -29,18 +54,20 @@ module.exports = {
   }),
   create: function (api) {
     return nest({
-      poll: {
+      poll: Object.assign(depjectifiedPollTypeCheckers, {
         parseChooseOne: parseChooseOnePoll,
-        getErrors: getPollErrors,
-        isChooseOne: isChooseOnePoll,
-        isPoll
-      },
-      position: {
+        parseDot: parseDotPoll,
+        parseRange: parseRangePoll,
+        parseProposal: parseProposalPoll,
+        getErrors: getPollErrors
+      }),
+      position: Object.assign(depjectifiedPositionTypeCheckers, {
         parseChooseOne: parseChooseOnePosition,
-        getErrors: getPositionErrors,
-        isChooseOne: isChooseOnePosition,
-        isPosition
-      },
+        parseDot: parseDotPosition,
+        parseRange: parseRangePosition,
+        parseProposal: parseProposalPosition,
+        getErrors: getPositionErrors
+      }),
       version: {
         string: versionString
       }
@@ -51,38 +78,36 @@ module.exports = {
       return versions
     }
 
-    function isPoll (poll) {
-      return isV1Poll(poll) ? true : undefined
-    }
-
-    function isChooseOnePoll (poll) {
-      return isV1ChooseOnePoll(poll) ? true : undefined
-    }
-
     function getPollErrors (poll) {
       if (!poll.errors) { poll.errors = {} }
 
-      isV1Poll(poll)
+      pollCheckers.isPoll(poll)
 
-      poll.errors[SCHEMA_VERSION] = isV1Poll.errors
+      poll.errors[SCHEMA_VERSION] = pollCheckers.isPoll.errors
       return poll
-    }
-
-    function isPosition (position) {
-      return isV1Position(position) ? true : undefined
-    }
-
-    function isChooseOnePosition (position) {
-      return isV1ChooseOnePosition(position) ? true : undefined
     }
 
     function getPositionErrors (postition) {
       if (!postition.errors) { postition.errors = {} }
 
-      isV1Position(postition)
+      positionCheckers.isPosition(postition)
 
-      postition.errors[SCHEMA_VERSION] = isV1Position.errors
+      postition.errors[SCHEMA_VERSION] = positionCheckers.isPosition.errors
       return postition
     }
+  }
+}
+// depject first keeps looking until something doesn't return undefined
+// This stuff converts a validator that returns bools to return true or undefined.
+function depjectifyTypeCheckers (checkers, depjectify) {
+  return Object.keys(checkers).reduce(function (acc, checker) {
+    acc[checker] = depjectify(checkers[checker])
+    return acc
+  }, {})
+}
+
+function firstify (mapper) {
+  return function (item) {
+    return mapper(item) ? true : undefined
   }
 }

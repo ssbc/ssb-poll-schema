@@ -1,13 +1,34 @@
-var schema = {
+const { PROPOSAL } = require('../../../types')
+const typeStringPattern = `^${PROPOSAL}$`
+
+const schema = {
   type: 'object',
-  required: ['type', 'proposal'],
+  required: ['type', 'choices'],
   properties: {
     type: {
       type: 'string',
-      pattern: '^proposal$'
+      pattern: typeStringPattern
     },
-    proposal: {
-      type: 'string'
+    choices: {
+      type: 'array',
+      items: [
+        {
+          type: 'string',
+          pattern: '^agree$'
+        },
+        {
+          type: 'string',
+          pattern: '^disagree$'
+        },
+        {
+          type: 'string',
+          pattern: '^abstain$'
+        },
+        {
+          type: 'string',
+          pattern: '^block$'
+        }
+      ]
     }
   }
 }

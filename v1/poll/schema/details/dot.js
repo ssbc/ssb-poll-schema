@@ -1,10 +1,13 @@
-var schema = {
+const { DOT } = require('../../../types')
+const typeStringPattern = `^${DOT}$`
+
+const schema = {
   type: 'object',
-  required: ['type', 'maxStanceScore', 'choices'],
+  required: ['type', 'numDots', 'choices'],
   properties: {
     type: {
       type: 'string',
-      pattern: '^dot$'
+      pattern: typeStringPattern
     },
     numDots: {
       type: 'integer',

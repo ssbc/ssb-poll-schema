@@ -1,31 +1,31 @@
 const test = require('tape')
-const ChooseOne = require('../../../poll/sync/parseChooseOne')
-const isPoll = require('../../../poll/sync/isPoll')
+const ChooseOne = require('../../../poll/sync/parse').parseChooseOnePoll
+const {isPoll} = require('../../../poll/sync/isPoll')
 const { CHOOSE_ONE, SCHEMA_VERSION } = require('../../../types')
 
 // this is for testing the attributes that are required for all polls
 
 test('Poll - common requirements', function (t) {
-  var missingTitle = ChooseOne({
+  const missingTitle = ChooseOne({
     choices: [1, 2, 'three'],
     closesAt: new Date().toISOString()
   })
   t.false(isPoll(missingTitle), 'needs title')
 
-  var missingClosesAt = ChooseOne({
+  const missingClosesAt = ChooseOne({
     choices: [1, 2, 'three'],
     title: 'how many food'
   })
   t.false(isPoll(missingClosesAt), 'needs closes at')
 
-  var malformedClosesAt = ChooseOne({
+  const malformedClosesAt = ChooseOne({
     choices: [1, 2, 'three'],
     title: 'how many food',
     closesAt: 'tomorrow'
   })
   t.false(isPoll(malformedClosesAt), 'needs ISOString closes at')
 
-  var missingDetails = {
+  const missingDetails = {
     type: 'poll',
     details: undefined,
     title: 'how many food',
@@ -34,7 +34,7 @@ test('Poll - common requirements', function (t) {
   t.false(isPoll(missingDetails), 'needs details')
   t.true(isPoll.errors, 'failing validations have errors')
 
-  var fullyFeatured = {
+  const fullyFeatured = {
     type: 'poll',
     version: SCHEMA_VERSION,
     details: {

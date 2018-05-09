@@ -1,5 +1,5 @@
-const { CHOOSE_ONE } = require('../../../types')
-const typeStringPattern = `^${CHOOSE_ONE}$`
+const { RANGE } = require('../../../types')
+const typeStringPattern = `^${RANGE}$`
 
 const schema = {
   type: 'object',
@@ -11,7 +11,10 @@ const schema = {
     },
     choices: {
       type: 'array',
-      minitems: 1
+      items: {
+        type: 'integer',
+        minimum: 0
+      }
     }
   }
 }

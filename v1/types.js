@@ -1,5 +1,10 @@
 module.exports = {
   CHOOSE_ONE: 'chooseOne',
+  DOT: 'dot',
+  RANGE: 'range',
+  PROPOSAL: 'proposal',
+  MEETING_TIME: 'meetingTime',
+  RSVP: 'rsvp',
   ERROR_POSITION_TYPE: 'ERROR_POSITION_TYPE',
   ERROR_POSITION_LATE: 'ERROR_POSITION_LATE',
   ERROR_POSITION_CHOICE: 'ERROR_POSITION_CHOICE',
