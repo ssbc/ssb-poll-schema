@@ -62,11 +62,11 @@ module.exports = {
         parseRange: parseRangePoll,
         parseProposal: parseProposalPoll,
         getErrors: getPollErrors,
-        isChooseOne: isChooseOnePoll,
-        isDot: isDotPoll,
-        isRange: isRangePoll,
-        isProposal: isProposalPoll,
-        isPoll
+        isChooseOne: depjectMappify(isV1ChooseOnePoll),
+        isDot: depjectMappify(isV1DotPoll),
+        isRange: depjectMappify(isV1RangePoll),
+        isProposal: depjectMappify(isV1ProposalPoll),
+        isPoll: depjectMappify(isV1Poll)
       },
       position: {
         parseChooseOne: parseChooseOnePosition,
@@ -74,11 +74,11 @@ module.exports = {
         parseRange: parseRangePosition,
         parseProposal: parseProposalPosition,
         getErrors: getPositionErrors,
-        isChooseOne: isChooseOnePosition,
-        isDot: isDotPosition,
-        isRange: isRangePosition,
-        isProposal: isProposalPosition,
-        isPosition
+        isChooseOne: depjectMappify(isV1ChooseOnePosition),
+        isDot: depjectMappify(isV1DotPosition),
+        isRange: depjectMappify(isV1RangePosition),
+        isProposal: depjectMappify(isV1ProposalPosition),
+        isPosition: depjectMappify(isV1Position)
       },
       version: {
         string: versionString
@@ -90,26 +90,6 @@ module.exports = {
       return versions
     }
 
-    function isPoll (poll) {
-      return isV1Poll(poll) ? true : undefined
-    }
-
-    function isChooseOnePoll (poll) {
-      return isV1ChooseOnePoll(poll) ? true : undefined
-    }
-
-    function isDotPoll (poll) {
-      return isV1DotPoll(poll) ? true : undefined
-    }
-
-    function isRangePoll (poll) {
-      return isV1RangePoll(poll) ? true : undefined
-    }
-
-    function isProposalPoll (poll) {
-      return isV1ProposalPoll(poll) ? true : undefined
-    }
-
     function getPollErrors (poll) {
       if (!poll.errors) { poll.errors = {} }
 
@@ -117,26 +97,6 @@ module.exports = {
 
       poll.errors[SCHEMA_VERSION] = isV1Poll.errors
       return poll
-    }
-
-    function isPosition (position) {
-      return isV1Position(position) ? true : undefined
-    }
-
-    function isChooseOnePosition (position) {
-      return isV1ChooseOnePosition(position) ? true : undefined
-    }
-
-    function isDotPosition (position) {
-      return isV1DotPosition(position) ? true : undefined
-    }
-
-    function isRangePosition (position) {
-      return isV1RangePosition(position) ? true : undefined
-    }
-
-    function isProposalPosition (position) {
-      return isV1ProposalPosition(position) ? true : undefined
     }
 
     function getPositionErrors (postition) {
@@ -147,5 +107,11 @@ module.exports = {
       postition.errors[SCHEMA_VERSION] = isV1Position.errors
       return postition
     }
+  }
+}
+
+function depjectMappify (mapper) {
+  return function (item) {
+    return mapper(item) ? true : undefined
   }
 }
