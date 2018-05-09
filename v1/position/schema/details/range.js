@@ -1,7 +1,7 @@
 const { RANGE } = require('../../../types')
 const typeStringPattern = `^${RANGE}$`
 
-var schema = {
+const schema = {
   type: 'object',
   required: ['type', 'choices'],
   properties: {

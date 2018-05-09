@@ -1,26 +1,26 @@
-var nest = require('depnest')
+const nest = require('depnest')
 
-var {SCHEMA_VERSION} = require('./types')
+const {SCHEMA_VERSION} = require('./types')
 
-var {
+const {
   parseChooseOnePoll,
   parseDotPoll,
   parseRangePoll,
   parseProposalPoll
 } = require('./poll/sync/parse')
 
-var {
+const {
   parseChooseOnePosition,
   parseDotPosition,
   parseRangePosition,
   parseProposalPosition
 } = require('./position/sync/parse')
 
-var pollCheckers = require('./poll/sync/isPoll')
-var positionCheckers = require('./position/sync/isPosition')
+const pollCheckers = require('./poll/sync/isPoll')
+const positionCheckers = require('./position/sync/isPosition')
 
-var depjectifiedPollTypeCheckers = depjectifyTypeCheckers(pollCheckers, firstify)
-var depjectifiedPositionTypeCheckers = depjectifyTypeCheckers(positionCheckers, firstify)
+const depjectifiedPollTypeCheckers = depjectifyTypeCheckers(pollCheckers, firstify)
+const depjectifiedPositionTypeCheckers = depjectifyTypeCheckers(positionCheckers, firstify)
 
 module.exports = {
   gives: nest({

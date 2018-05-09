@@ -6,7 +6,7 @@ const normalisedPositionSchema = require('../../../../normalised-schema/position
 const isNormalisedPosition = Validator(normalisedPositionSchema)
 
 test('Position parsing - parseMeetingTime', function (t) {
-  var validPosition = parseMeetingTime({
+  const validPosition = parseMeetingTime({
     key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     value: {
       content: {
@@ -22,7 +22,7 @@ test('Position parsing - parseMeetingTime', function (t) {
     }})
   t.true(isNormalisedPosition(validPosition), 'simple (passes isNormalisedPosition)')
 
-  var invalidPosition = parseMeetingTime(
+  const invalidPosition = parseMeetingTime(
     {
       key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
       value: {

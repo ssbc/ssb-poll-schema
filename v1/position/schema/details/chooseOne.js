@@ -1,7 +1,7 @@
 const { CHOOSE_ONE } = require('../../../types')
 const typeStringPattern = `^${CHOOSE_ONE}$`
 
-var schema = {
+const schema = {
   type: 'object',
   required: ['type', 'choice'],
   properties: {

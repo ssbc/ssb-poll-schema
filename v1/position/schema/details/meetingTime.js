@@ -1,7 +1,7 @@
 const { MEETING_TIME } = require('../../../types')
 const typeStringPattern = `^${MEETING_TIME}$`
 
-var schema = {
+const schema = {
   type: 'object',
   required: ['type', 'choices'],
   properties: {

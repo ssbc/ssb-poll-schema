@@ -6,7 +6,7 @@ const normalisedPositionSchema = require('../../../../normalised-schema/position
 const isNormalisedPosition = Validator(normalisedPositionSchema)
 
 test('Position parsing - parseRange', function (t) {
-  var validPosition = parseRange({
+  const validPosition = parseRange({
     key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     value: {
       content: {
@@ -22,7 +22,7 @@ test('Position parsing - parseRange', function (t) {
     }})
   t.true(isNormalisedPosition(validPosition), 'simple (passes isNormalisedPosition)')
 
-  var invalidPosition = parseRange(
+  const invalidPosition = parseRange(
     {
       key: '%keyhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
       value: {

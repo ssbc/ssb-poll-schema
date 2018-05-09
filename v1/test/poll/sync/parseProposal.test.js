@@ -6,7 +6,7 @@ const normalisedPollSchema = require('../../../../normalised-schema/poll')
 const isNormalisedPoll = Validator(normalisedPollSchema)
 
 test('Poll parsing - parseProposal', function (t) {
-  var validPoll = parseProposal({
+  const validPoll = parseProposal({
     key: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     value: {
       content: {
@@ -22,7 +22,7 @@ test('Poll parsing - parseProposal', function (t) {
     }})
   t.true(isNormalisedPoll(validPoll), 'simple (passes isNormalisedPoll)')
 
-  var invalidPoll = parseProposal({
+  const invalidPoll = parseProposal({
     key: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     value: {
       content: {
