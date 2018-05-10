@@ -25,6 +25,7 @@ test('parsing a v1 position returns an object that is a valid normalised positio
     type: 'position',
     version: 'v1',
     root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
+    branch: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     details: {
       type: CHOOSE_ONE,
       choice: 0

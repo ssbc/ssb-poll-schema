@@ -19,7 +19,13 @@ const schema = {
       $ref: '#/definitions/messageId'
     },
     branch: {
-      $ref: '#/definitions/messageId'
+      oneOf: [
+        {$ref: '#/definitions/messageId'},
+        {
+          type: 'array',
+          items: {$ref: '#/definitions/messageId'}
+        }
+      ]
     },
     closesAt: { type: 'string', format: 'date-time' },
     mentions: { $ref: '#/definitions/mentions/any' },
@@ -28,4 +34,4 @@ const schema = {
   definitions: ssbSchemaDefintions
 }
 
-module.exports.poll = schema
+module.exports.pollUpdate = schema

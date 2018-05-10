@@ -11,6 +11,7 @@ test('Position parsing - parseDot', function (t) {
     value: {
       content: {
         root: '%rootrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
+        branch: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
         type: 'position',
         version: 'v1',
         details: {
@@ -28,6 +29,7 @@ test('Position parsing - parseDot', function (t) {
       value: {
         content: {
           // root: '%rootrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
+          branch: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
           type: 'position',
           version: 'v1',
           details: {
