@@ -20,6 +20,7 @@ const getPositionErrors = (position) => {
 }
 
 const isPoll = first(sockets.poll.isPoll, 'poll.isPoll')
+const isPollUpdate = first(sockets.poll.isPollUpdate, 'poll.isPollUpdate')
 const isChooseOnePoll = first(sockets.poll.isChooseOne, 'poll.isChooseOne')
 const isDotPoll = first(sockets.poll.isDot, 'poll.isDot')
 const isRangePoll = first(sockets.poll.isRange, 'poll.isRange')
@@ -61,6 +62,7 @@ module.exports = {
   isRangePoll,
   isProposalPoll,
   isPoll,
+  isPollUpdate,
   getPollErrors,
 
   parseChooseOnePosition,
