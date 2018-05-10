@@ -27,7 +27,13 @@ const schema = {
       $ref: '#/definitions/messageId'
     },
     branch: {
-      $ref: '#/definitions/messageId'
+      oneOf: [
+        {$ref: '#/definitions/messageId'},
+        {
+          type: 'array',
+          items: {$ref: '#/definitions/messageId'}
+        }
+      ]
     },
     reason: { type: 'string' },
     details: {
