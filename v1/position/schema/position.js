@@ -5,6 +5,7 @@ const rangeDetails = require('./details/range')
 const dotDetails = require('./details/dot')
 const proposalDetails = require('./details/proposal')
 const meetingTimeDetails = require('./details/meetingTime')
+
 const {SCHEMA_VERSION} = require('../../types')
 
 const ssbSchemaDefintions = require('../../lib/ssbSchemaDefintions')
@@ -12,7 +13,7 @@ const ssbSchemaDefintions = require('../../lib/ssbSchemaDefintions')
 const schema = {
   $schema: 'http://json-schema.org/schema#',
   type: 'object',
-  required: ['version', 'type', 'root', 'details'],
+  required: ['version', 'type', 'root', 'branch', 'details'],
   properties: {
     version: {
       type: 'string',
@@ -24,6 +25,15 @@ const schema = {
     },
     root: {
       $ref: '#/definitions/messageId'
+    },
+    branch: {
+      oneOf: [
+        {$ref: '#/definitions/messageId'},
+        {
+          type: 'array',
+          items: {$ref: '#/definitions/messageId'}
+        }
+      ]
     },
     reason: { type: 'string' },
     details: {
