@@ -24,6 +24,7 @@ test('Position - common requirements', function (t) {
   const validPosition = {
     type: 'position',
     root: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
+    branch: '%t+PhrNxxXkw/jMo6mnwUWfFjJapoPWxzsQoe0Np+nYw=.sha256',
     version: 'v1',
     details: {
       type: CHOOSE_ONE,
