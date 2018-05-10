@@ -29,6 +29,7 @@ const parseChooseOnePoll = first(sockets.poll.parseChooseOne, 'poll.parseChooseO
 const parseDotPoll = first(sockets.poll.parseDot, 'poll.parseDot')
 const parseRangePoll = first(sockets.poll.parseRange, 'poll.parseRange')
 const parseProposalPoll = first(sockets.poll.parseProposal, 'poll.parseProposal')
+const parsePollUpdate = first(sockets.poll.parseUpdate, 'poll.parseUpdate')
 
 isPoll.chooseOne = isChooseOnePoll
 isPoll.dot = isDotPoll
@@ -57,6 +58,7 @@ module.exports = {
   parseDotPoll,
   parseRangePoll,
   parseProposalPoll,
+  parsePollUpdate,
   isChooseOnePoll,
   isDotPoll,
   isRangePoll,
