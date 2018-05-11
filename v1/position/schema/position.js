@@ -31,7 +31,8 @@ const schema = {
         {$ref: '#/definitions/messageId'},
         {
           type: 'array',
-          items: {$ref: '#/definitions/messageId'}
+          items: {$ref: '#/definitions/messageId'},
+          minLength: 1
         }
       ]
     },
