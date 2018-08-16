@@ -40,10 +40,10 @@ console.log(isPoll(validPoll)) // => true
 
 ### Validators
 
-- `isPoll`
+- `isPoll` (NOTE this currently returns true / undefined - a side effect of depject)
 - `isChooseOnePoll` (also accessible under `isPoll.chooseOne`)
 
-- `isPosition`
+- `isPosition` (NOTE this currently returns true / undefined - a side effect of depject)
 - `isChooseOnePosition` (also accessible under `isPosition.chooseOne`)
 
 ### Parsers
@@ -141,6 +141,6 @@ var sockets = combine(pollSchema.concat(yourSchema))
 
 var isPoll = first(sockets.poll.isPoll, 'poll.isPoll')
 
-console.log(isPoll({})) // => false
+console.log(isPoll({})) // => undefined
 ```
 
