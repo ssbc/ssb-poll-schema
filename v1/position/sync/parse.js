@@ -4,7 +4,7 @@ const checkers = require('./isPosition')
 module.exports = {
   parseChooseOnePosition: Parser(checkers.isChooseOne),
   parseDotPosition: Parser(checkers.isDot),
-  parseRangePosition: Parser(checkers.isRange),
+  parseMeetingTimePosition: Parser(checkers.isMeetingTime),
   parseProposalPosition: Parser(checkers.isProposal),
-  parseMeetingTimePosition: Parser(checkers.isMeetingTime)
+  parseRangePosition: Parser(checkers.isRange)
 }
