@@ -5,8 +5,9 @@ const {SCHEMA_VERSION} = require('./types')
 const {
   parseChooseOnePoll,
   parseDotPoll,
-  parseRangePoll,
-  parseProposalPoll
+  parseMeetingTimePoll,
+  parseProposalPoll,
+  parseRangePoll
 } = require('./poll/sync/parse')
 
 const {
@@ -16,8 +17,9 @@ const {
 const {
   parseChooseOnePosition,
   parseDotPosition,
-  parseRangePosition,
-  parseProposalPosition
+  parseMeetingTimePosition,
+  parseProposalPosition,
+  parseRangePosition
 } = require('./position/sync/parse')
 
 const pollCheckers = require('./poll/sync/isPoll')
@@ -38,10 +40,11 @@ module.exports = {
       'parseUpdate',
       'isChooseOne',
       'isDot',
-      'isRange',
+      'isMeetingTime',
       'isProposal',
       'isPoll',
       'isPollUpdate',
+      'isRange',
       'getErrors'
     ],
     'position': [
@@ -51,9 +54,10 @@ module.exports = {
       'parseProposal',
       'isChooseOne',
       'isDot',
-      'isRange',
-      'isProposal',
+      'isMeetingTime',
       'isPosition',
+      'isProposal',
+      'isRange',
       'getErrors'
     ],
     'version': [
@@ -65,16 +69,18 @@ module.exports = {
       poll: Object.assign(depjectifiedPollTypeCheckers, {
         parseChooseOne: parseChooseOnePoll,
         parseDot: parseDotPoll,
-        parseRange: parseRangePoll,
+        parseMeetingTime: parseMeetingTimePoll,
         parseProposal: parseProposalPoll,
+        parseRange: parseRangePoll,
         parseUpdate: parsePollUpdate,
         getErrors: getPollErrors
       }),
       position: Object.assign(depjectifiedPositionTypeCheckers, {
         parseChooseOne: parseChooseOnePosition,
         parseDot: parseDotPosition,
-        parseRange: parseRangePosition,
+        parseMeetingTime: parseMeetingTimePosition,
         parseProposal: parseProposalPosition,
+        parseRange: parseRangePosition,
         getErrors: getPositionErrors
       }),
       version: {

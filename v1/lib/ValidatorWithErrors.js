@@ -3,7 +3,7 @@ const getMsgContent = require('ssb-msg-content')
 
 // server is not used here. Closure pattern is just for consistency of use with other functions.
 module.exports = function makeValidatorWithErrors (schema) {
-  const validator = Validator(schema)
+  const validator = Validator(schema, { verbose: true })
   return function validatorWithErrors (obj) {
     const result = validator(getMsgContent(obj))
 

@@ -4,7 +4,7 @@ const checkers = require('./isPoll')
 module.exports = {
   parseChooseOnePoll: Parser(checkers.isChooseOne),
   parseDotPoll: Parser(checkers.isDot),
-  parseRangePoll: Parser(checkers.isRange),
+  parseMeetingTimePoll: Parser(checkers.isMeetingTime),
   parseProposalPoll: Parser(checkers.isProposal),
-  parseMeetingTimePoll: Parser(checkers.isMeetingTime)
+  parseRangePoll: Parser(checkers.isRange)
 }
