@@ -35,6 +35,7 @@ isPoll.update = isPollUpdate
 const parseChooseOnePoll = first(sockets.poll.parseChooseOne, 'poll.parseChooseOne')
 const parseDotPoll = first(sockets.poll.parseDot, 'poll.parseDot')
 const parseRangePoll = first(sockets.poll.parseRange, 'poll.parseRange')
+const parseMeetingTimePoll = first(sockets.poll.parseMeetingTime, 'poll.parseMeetingTime')
 const parseProposalPoll = first(sockets.poll.parseProposal, 'poll.parseProposal')
 const parsePollUpdate = first(sockets.poll.parseUpdate, 'poll.parseUpdate')
 
@@ -52,6 +53,7 @@ isPosition.range = isRangePosition
 const parseChooseOnePosition = first(sockets.position.parseChooseOne, 'position.parseChooseOne')
 const parseDotPosition = first(sockets.position.parseDot, 'position.parseDot')
 const parseRangePosition = first(sockets.position.parseRange, 'position.parseRange')
+const parseMeetingTimePosition = first(sockets.position.parseMeetingTime, 'position.parseMeetingTime')
 const parseProposalPosition = first(sockets.position.parseProposal, 'position.parseProposal')
 
 const versionStrings = reduce(sockets.version.string, 'version.string')({})
@@ -60,6 +62,7 @@ module.exports = {
   parseChooseOnePoll,
   parseDotPoll,
   parseRangePoll,
+  parseMeetingTimePoll,
   parseProposalPoll,
   parsePollUpdate,
   isChooseOnePoll,
@@ -74,6 +77,7 @@ module.exports = {
   parseChooseOnePosition,
   parseDotPosition,
   parseRangePosition,
+  parseMeetingTimePosition,
   parseProposalPosition,
   isChooseOnePosition,
   isDotPosition,
