@@ -1,6 +1,6 @@
 {
   "name": "ssb-poll-schema",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "Schema for ssb poll types, current and legacy",
   "main": "index.js",
   "scripts": {
