@@ -9,10 +9,8 @@ const {
   parseProposalPoll,
   parseRangePoll
 } = require('./poll/sync/parse')
-
-const {
-  parsePollUpdate
-} = require('./poll-update/sync/parse')
+const { parsePollUpdate } = require('./poll-update/sync/parse')
+const { parsePollResolution } = require('./poll-resolution/sync/parse')
 
 const {
   parseChooseOnePosition,
@@ -24,10 +22,18 @@ const {
 
 const pollCheckers = require('./poll/sync/isPoll')
 const pollUpdateCheckers = require('./poll-update/sync/isPollUpdate')
+const pollResolutionCheckers = require('./poll-resolution/sync/isPollResolution')
 const positionCheckers = require('./position/sync/isPosition')
 
-const depjectifiedPollTypeCheckers = depjectifyTypeCheckers(Object.assign({}, pollCheckers, pollUpdateCheckers), firstify)
-
+const depjectifiedPollTypeCheckers = depjectifyTypeCheckers(
+  Object.assign(
+    {},
+    pollCheckers,
+    pollUpdateCheckers,
+    pollResolutionCheckers
+  ),
+  firstify
+)
 const depjectifiedPositionTypeCheckers = depjectifyTypeCheckers(positionCheckers, firstify)
 
 module.exports = {
@@ -39,12 +45,14 @@ module.exports = {
       'parseMeetingTime',
       'parseProposal',
       'parseUpdate',
+      'parseResolution',
       'isChooseOne',
       'isDot',
       'isMeetingTime',
       'isProposal',
       'isPoll',
       'isPollUpdate',
+      'isPollResolution',
       'isRange',
       'getErrors'
     ],
@@ -75,6 +83,7 @@ module.exports = {
         parseProposal: parseProposalPoll,
         parseRange: parseRangePoll,
         parseUpdate: parsePollUpdate,
+        parseResolution: parsePollResolution,
         getErrors: getPollErrors
       }),
       position: Object.assign(depjectifiedPositionTypeCheckers, {
