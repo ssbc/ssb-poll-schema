@@ -1,11 +1,11 @@
-const { SCHEMA_VERSION, POLL_UPDATE } = require('../../types')
+const { SCHEMA_VERSION, POLL_RESOLUTION } = require('../../types')
 
 const ssbSchemaDefintions = require('../../lib/ssbSchemaDefintions')
 
 const schema = {
   $schema: 'http://json-schema.org/schema#',
   type: 'object',
-  required: ['version', 'type', 'closesAt', 'root', 'branch'],
+  required: ['version', 'type', 'choices', 'root', 'branch'],
   properties: {
     version: {
       type: 'string',
@@ -13,7 +13,17 @@ const schema = {
     },
     type: {
       type: 'string',
-      pattern: `^${POLL_UPDATE}$`
+      pattern: `^${POLL_RESOLUTION}$`
+    },
+    choices: {
+      type: 'array',
+      items: {
+        type: 'integer',
+        minimum: 0
+      }
+    },
+    body: {
+      type: 'string'
     },
     root: {
       $ref: '#/definitions/messageId'
@@ -28,11 +38,10 @@ const schema = {
         }
       ]
     },
-    closesAt: { type: 'string', format: 'date-time' },
     mentions: { $ref: '#/definitions/mentions/any' },
     recps: { $ref: '#/definitions/recps' }
   },
   definitions: ssbSchemaDefintions
 }
 
-module.exports.pollUpdate = schema
+module.exports.pollResolution = schema

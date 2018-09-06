@@ -20,24 +20,27 @@ const getPositionErrors = (position) => {
 }
 
 const isPoll = first(sockets.poll.isPoll, 'poll.isPoll')
-const isPollUpdate = first(sockets.poll.isPollUpdate, 'poll.isPollUpdate')
 const isChooseOnePoll = first(sockets.poll.isChooseOne, 'poll.isChooseOne')
 const isDotPoll = first(sockets.poll.isDot, 'poll.isDot')
 const isMeetingTimePoll = first(sockets.poll.isMeetingTime, 'poll.isMeetingTime')
 const isRangePoll = first(sockets.poll.isRange, 'poll.isRange')
 const isProposalPoll = first(sockets.poll.isProposal, 'poll.isProposal')
+const isPollUpdate = first(sockets.poll.isPollUpdate, 'poll.isPollUpdate')
+const isPollResolution = first(sockets.poll.isPollResolution, 'poll.isPollResolution')
 isPoll.chooseOne = isChooseOnePoll
 isPoll.dot = isDotPoll
 isPoll.meetingTime = isMeetingTimePoll
 isPoll.proposal = isProposalPoll
 isPoll.range = isRangePoll
 isPoll.update = isPollUpdate
+isPoll.resolution = isPollResolution
 const parseChooseOnePoll = first(sockets.poll.parseChooseOne, 'poll.parseChooseOne')
 const parseDotPoll = first(sockets.poll.parseDot, 'poll.parseDot')
 const parseRangePoll = first(sockets.poll.parseRange, 'poll.parseRange')
 const parseMeetingTimePoll = first(sockets.poll.parseMeetingTime, 'poll.parseMeetingTime')
 const parseProposalPoll = first(sockets.poll.parseProposal, 'poll.parseProposal')
 const parsePollUpdate = first(sockets.poll.parseUpdate, 'poll.parseUpdate')
+const parsePollResolution = first(sockets.poll.parseResolution, 'poll.parseResolution')
 
 const isPosition = first(sockets.position.isPosition, 'position.isPosition')
 const isChooseOnePosition = first(sockets.position.isChooseOne, 'position.isChooseOne')
@@ -65,6 +68,7 @@ module.exports = {
   parseMeetingTimePoll,
   parseProposalPoll,
   parsePollUpdate,
+  parsePollResolution,
   isChooseOnePoll,
   isDotPoll,
   isMeetingTimePoll,
@@ -72,6 +76,7 @@ module.exports = {
   isPoll,
   isRangePoll,
   isPollUpdate,
+  isPollResolution,
   getPollErrors,
 
   parseChooseOnePosition,
