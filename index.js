@@ -40,7 +40,7 @@ const parseRangePoll = first(sockets.poll.parseRange, 'poll.parseRange')
 const parseMeetingTimePoll = first(sockets.poll.parseMeetingTime, 'poll.parseMeetingTime')
 const parseProposalPoll = first(sockets.poll.parseProposal, 'poll.parseProposal')
 const parsePollUpdate = first(sockets.poll.parseUpdate, 'poll.parseUpdate')
-const parsePollResolution = first(sockets.poll.parseUpdate, 'poll.parseResolution')
+const parsePollResolution = first(sockets.poll.parseResolution, 'poll.parseResolution')
 
 const isPosition = first(sockets.position.isPosition, 'position.isPosition')
 const isChooseOnePosition = first(sockets.position.isChooseOne, 'position.isChooseOne')
