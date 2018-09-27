@@ -36,6 +36,7 @@ const schema = {
     },
     closesAt: { type: 'string', format: 'date-time' },
     body: { type: 'string' },
+    progenitor: { $ref: '#/definitions/messageId' },
     mentions: { $ref: '#/definitions/mentions/any' },
     recps: { $ref: '#/definitions/recps' }
   },
